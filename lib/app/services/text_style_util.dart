@@ -24,8 +24,11 @@ class TextStyleUtil {
   }
 
   static TextStyle openSans600(
-      {Color color = ColorUtil.whitetText, double fontSize = 14}) {
+      {Color color = ColorUtil.whitetText,
+      double fontSize = 14,
+      FontStyle fontStyle = FontStyle.normal}) {
     return GoogleFonts.openSans(
+      fontStyle: fontStyle,
       color: color,
       fontSize: fontSize,
       fontWeight: FontWeight.w600,
@@ -44,10 +47,10 @@ class TextStyleUtil {
   static TextStyle openSans400(
       {Color color = ColorUtil.whitetText, double fontSize = 18}) {
     return GoogleFonts.openSans(
-      color: color,
-      fontSize: fontSize,
-      fontWeight: FontWeight.w400,
-    );
+        color: color,
+        fontSize: fontSize,
+        fontWeight: FontWeight.w400,
+        letterSpacing: 0.2);
   }
 
   static TextStyle openSans500(

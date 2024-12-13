@@ -151,7 +151,7 @@ class SignupView extends GetView<SignupController> {
                             TextSpan(
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  Get.toNamed('/login');
+                                  Get.offAndToNamed('/login');
                                 },
                               text: 'Login',
                               style: TextStyleUtil.openSans500(fontSize: 14),

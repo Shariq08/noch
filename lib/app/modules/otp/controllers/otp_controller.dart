@@ -37,12 +37,12 @@ class OtpController extends GetxController {
         otp4.text.isNotEmpty &&
         otp5.text.isNotEmpty &&
         otp6.text.isNotEmpty) {
-      print('00000');
       invalidOtp.value = false;
-      Get.offNamed('/signup-success');
+      Get.arguments['isfromlogin'] == true
+          ? Get.offAllNamed('/navigation')
+          : Get.offNamed('/signup-success');
     } else {
       invalidOtp.value = true;
-      print('11111');
     }
   }
 

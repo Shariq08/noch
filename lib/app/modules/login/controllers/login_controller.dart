@@ -16,7 +16,7 @@ class LoginController extends GetxController {
 
   onLoginTap() {
     if (formKey.currentState!.validate()) {
-      Get.toNamed('/otp');
+      Get.toNamed('/otp', arguments: {'isfromlogin': true});
     } else {}
   }
 

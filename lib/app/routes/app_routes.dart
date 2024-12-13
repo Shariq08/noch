@@ -13,6 +13,23 @@ abstract class Routes {
   static const PROFILE_SETUP = _Paths.PROFILE_SETUP;
   static const ENABLE_LOCATION = _Paths.ENABLE_LOCATION;
   static const LOGIN = _Paths.LOGIN;
+  static const NAVIGATION = _Paths.NAVIGATION;
+  static const RESTAURANT = _Paths.RESTAURANT;
+  static const RESTAURANT_REVIEW = _Paths.RESTAURANT_REVIEW;
+  static const REELS = _Paths.REELS;
+  static const RESTAURANT_DETAILS = _Paths.RESTAURANT_DETAILS;
+  static const RESERVATION = _Paths.RESERVATION;
+  static const RESERVATION_CONFIRMATION = _Paths.RESERVATION_CONFIRMATION;
+  static const RESTAURANT_MENU = _Paths.RESTAURANT_MENU;
+  static const DISH_DEATAILS = _Paths.DISH_DEATAILS;
+  static const RESTAURANT_PHOTOS = _Paths.RESTAURANT_PHOTOS;
+  static const SHARE_FOLLOWERS = _Paths.SHARE_FOLLOWERS;
+  static const RIDE_REQUEST = _Paths.RIDE_REQUEST;
+  static const DELIVERY = _Paths.DELIVERY;
+  static const ABOUT_RESTAURANT = _Paths.ABOUT_RESTAURANT;
+  static const EVENTS = _Paths.EVENTS;
+  static const EVENTDETAILS = _Paths.EVENTDETAILS;
+  static const REPORT = _Paths.REPORT;
 }
 
 abstract class _Paths {
@@ -27,4 +44,21 @@ abstract class _Paths {
   static const PROFILE_SETUP = '/profile-setup';
   static const ENABLE_LOCATION = '/enable-location';
   static const LOGIN = '/login';
+  static const NAVIGATION = '/navigation';
+  static const RESTAURANT = '/restaurant';
+  static const RESTAURANT_REVIEW = '/restaurant-review';
+  static const REELS = '/reels';
+  static const RESTAURANT_DETAILS = '/restaurant-details';
+  static const RESERVATION = '/reservation';
+  static const RESERVATION_CONFIRMATION = '/reservation-confirmation';
+  static const RESTAURANT_MENU = '/restaurant-menu';
+  static const DISH_DEATAILS = '/dish-deatails';
+  static const RESTAURANT_PHOTOS = '/restaurant-photos';
+  static const SHARE_FOLLOWERS = '/share-followers';
+  static const RIDE_REQUEST = '/ride-request';
+  static const DELIVERY = '/delivery';
+  static const ABOUT_RESTAURANT = '/about-restaurant';
+  static const EVENTS = '/events';
+  static const EVENTDETAILS = '/evendeatils';
+  static const REPORT = '/report';
 }
