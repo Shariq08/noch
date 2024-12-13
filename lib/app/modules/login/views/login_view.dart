@@ -133,7 +133,7 @@ class LoginView extends GetView<LoginController> {
                     Center(
                         child: InkWell(
                       onTap: () {
-                        Get.offNamed('/signup');
+                        Get.offAndToNamed('/signup');
                       },
                       child: Text(
                         'Create an account',

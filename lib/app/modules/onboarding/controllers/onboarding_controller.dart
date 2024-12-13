@@ -5,7 +5,7 @@ import 'package:noch/app/constants/image_constant.dart';
 class OnboardingController extends GetxController {
   //TODO: Implement OnboardingController
   final currentIndex = 0.obs;
-  late PageController pageController;
+  late PageController pageController = PageController(initialPage: 0);
 
   // Onboarding data
   final List<Map<String, String>> data = [
@@ -38,6 +38,9 @@ class OnboardingController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    for (var item in data) {
+      precacheImage(AssetImage(item['img']!), Get.context!);
+    }
     pageController = PageController(initialPage: 0);
   }
 

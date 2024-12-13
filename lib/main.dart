@@ -1,3 +1,5 @@
+import 'package:flutter/rendering.dart';
+
 import 'app/modules/home/bindings/home_binding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,7 +14,7 @@ Future<void> main() async {
   SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitUp],
   );
-
+  // debugPaintSizeEnabled = true;
   return runApp(GestureDetector(
     onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
     child: GetMaterialApp(

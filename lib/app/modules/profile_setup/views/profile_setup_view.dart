@@ -21,6 +21,15 @@ class ProfileSetupView extends GetView<ProfileSetupController> {
     return Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              color: ColorUtil.whitetText,
+            ),
+          ),
           backgroundColor: Colors.black,
         ),
         body: Padding(
@@ -172,7 +181,7 @@ class ProfileSetupView extends GetView<ProfileSetupController> {
                     TextFormField(
                       style: TextStyleUtil.openSans400(fontSize: 14),
                       onChanged: (value) {},
-                      controller: controller.nameController,
+                      controller: controller.phoneController,
                       decoration:
                           textFormInputDecoration('Enter your phone number'),
                     ),

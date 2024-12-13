@@ -18,7 +18,7 @@ class SignupController extends GetxController {
 
   onSignupTap() {
     if (formKey.currentState!.validate()) {
-      Get.toNamed('/otp');
+      Get.toNamed('/otp', arguments: {'isfromlogin': false});
     } else {}
   }
 

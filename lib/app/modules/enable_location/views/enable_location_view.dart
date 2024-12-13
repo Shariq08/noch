@@ -63,7 +63,7 @@ class EnableLocationView extends GetView<EnableLocationController> {
                 children: [
                   expandedButton(
                       onPressed: () {
-                        Get.offNamed('/enable-location');
+                        Get.offNamed('/navigation');
                       },
                       title: "I'll do that later",
                       fontsize: 16),

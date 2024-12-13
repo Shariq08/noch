@@ -21,20 +21,29 @@ extension ColorUtil on BuildContext {
   static get kcMediumGreyColor => null;
 
   static get kcPrimaryColor => null;
-  static const Color neutral_3 = Color(0xffB8B8B8);
+
+  static const Color neutral_3 = Color(0x00ffd200);
+  static Color neutral_5 = HexColor("#FFD200");
   static const Color gradient_1 = Color.fromRGBO(0, 0, 0, 1);
   static const Color gradient_3 = Color.fromRGBO(0, 0, 0, 0.8);
   static const Color gradient_2 = Color.fromRGBO(0, 0, 0, 0);
-  static const Color whitetrnsprnt = Color.fromRGBO(255, 255, 255, 0.9);
+  static const Color whitetrnsprnt = Color.fromRGBO(250, 250, 250, 0.9);
   static const Color whitetText = Color.fromRGBO(255, 255, 255, 1);
-  static const Color blackgrey = Color.fromRGBO(93, 93, 93, 1);
+  static Color blackgrey = HexColor('#5D5D5D');
   static const Color nButtonColor = Color.fromRGBO(255, 210, 0, 1);
   static const Color nButtonColorLight = Color.fromRGBO(255, 244, 191, 1);
-  static const Color nblackText = Color.fromRGBO(17, 17, 17, 1);
+  static const Color nButtonColorLight2 = Color.fromRGBO(255, 241, 229, 1);
+  static Color nblackText = HexColor('#111111');
 
   static const Color nbrightnessIconC1 = Color.fromRGBO(255, 217, 38, 1);
   static const Color nbrightnessIconC2 = Color.fromRGBO(255, 237, 153, 1);
   static const Color nTextForm = Color.fromRGBO(43, 41, 32, 1);
   static const Color ncircleavatar = Color.fromRGBO(206, 206, 206, 1);
   static const Color ncompulsory = Color.fromRGBO(255, 46, 57, 1);
+  static const Color ntransparentpage = Color.fromRGBO(17, 17, 17, 0.50);
+  static const Color nblack07 = Color.fromRGBO(0, 0, 0, 0.20);
+  static const Color transparentTab = Color.fromRGBO(0, 0, 0, 0.4);
+  static Color restrReviewProfile = HexColor("#3A2115");
+  static Color nblackText2 = HexColor("#CCC8B2");
+  static Color blackgrey2 = HexColor("#373737");
 }
