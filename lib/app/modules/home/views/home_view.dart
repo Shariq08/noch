@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:noch/app/constants/image_constant.dart';
 import 'package:noch/app/modules/home/views/comments_view.dart';
 import 'package:noch/app/modules/home/views/notification_view.dart';
-import 'package:noch/app/modules/home/views/reel_view.dart';
 import 'package:noch/app/modules/reels/views/reels_view.dart';
 import 'package:noch/app/services/colors.dart';
 import 'package:noch/app/services/responsive_size.dart';

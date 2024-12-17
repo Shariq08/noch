@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/about_restaurant/bindings/about_restaurant_binding.dart';
 import '../modules/about_restaurant/views/about_restaurant_view.dart';
+import '../modules/cart/bindings/cart_binding.dart';
+import '../modules/cart/views/cart_view.dart';
 import '../modules/delivery/bindings/delivery_binding.dart';
 import '../modules/delivery/views/delivery_view.dart';
 import '../modules/dish_deatails/bindings/dish_deatails_binding.dart';
@@ -10,6 +12,8 @@ import '../modules/enable_location/bindings/enable_location_binding.dart';
 import '../modules/enable_location/views/enable_location_view.dart';
 import '../modules/events/bindings/events_binding.dart';
 import '../modules/events/views/events_view.dart';
+import '../modules/gathering/bindings/gathering_binding.dart';
+import '../modules/gathering/views/gathering_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -58,7 +62,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.NAVIGATION;
+  static const INITIAL = Routes.SPLASH;
 
   static final routes = [
     GetPage(
@@ -190,6 +194,16 @@ class AppPages {
       name: _Paths.REPORT,
       page: () => const ReportView(),
       binding: ReportBinding(),
+    ),
+    GetPage(
+      name: _Paths.CART,
+      page: () => const CartView(),
+      binding: CartBinding(),
+    ),
+    GetPage(
+      name: _Paths.GATHERING,
+      page: () => const GatheringView(),
+      binding: GatheringBinding(),
     ),
   ];
 }

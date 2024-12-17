@@ -46,4 +46,5 @@ extension ColorUtil on BuildContext {
   static Color restrReviewProfile = HexColor("#3A2115");
   static Color nblackText2 = HexColor("#CCC8B2");
   static Color blackgrey2 = HexColor("#373737");
+  static Color paymentcardbackground = HexColor("#F6F6F6");
 }

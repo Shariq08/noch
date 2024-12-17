@@ -30,6 +30,8 @@ abstract class Routes {
   static const EVENTS = _Paths.EVENTS;
   static const EVENTDETAILS = _Paths.EVENTDETAILS;
   static const REPORT = _Paths.REPORT;
+  static const CART = _Paths.CART;
+  static const GATHERING = _Paths.GATHERING;
 }
 
 abstract class _Paths {
@@ -61,4 +63,6 @@ abstract class _Paths {
   static const EVENTS = '/events';
   static const EVENTDETAILS = '/evendeatils';
   static const REPORT = '/report';
+  static const CART = '/cart';
+  static const GATHERING = '/gathering';
 }

@@ -3,19 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:noch/app/constants/image_constant.dart';
 import 'package:noch/app/modules/home/views/home_view.dart';
-import 'package:noch/app/modules/otp/views/otp_view.dart';
-import 'package:noch/app/modules/reels/views/home2_view.dart';
 import 'package:noch/app/modules/restaurant/views/restaurant_view.dart';
 import 'package:noch/app/services/colors.dart';
 import 'package:noch/app/services/responsive_size.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../controllers/navigation_controller.dart';
 
 class NavigationView extends GetView<NavigationController> {
   NavigationView({super.key});
   final List<Widget> pages = [
     HomeView(),
-    Home2View(),
+    HomeView(),
     RestaurantView(),
     HomeView(),
     HomeView(),
@@ -24,7 +21,7 @@ class NavigationView extends GetView<NavigationController> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      extendBodyBehindAppBar: true,
+      // extendBodyBehindAppBar: true,
       body: PageView(
         physics: NeverScrollableScrollPhysics(),
         controller: controller.pageController,
@@ -69,15 +66,20 @@ class NavigationView extends GetView<NavigationController> {
               label: '',
             ),
             BottomNavigationBarItem(
-              activeIcon: TabIcon(
-                h: 28.kh,
-                w: 28.kw,
-                path: ImageConstant.spoonknifeon,
+              activeIcon: SizedBox(
+                height: 3.5.h,
+                width: 28.kw,
+                child: Image.asset(
+                  ImageConstant.spoonknifeoff,
+                  height: 8,
+                  fit: BoxFit.fill,
+                  color: ColorUtil.nButtonColor,
+                ),
               ),
               icon: TabIcon(
                 h: 28.kh,
                 w: 28.kw,
-                path: ImageConstant.spoonknifeoff,
+                path: ImageConstant.spoonknifeon,
               ),
               label: '',
             ),

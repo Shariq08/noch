@@ -96,7 +96,8 @@ class RestaurantDetailsView extends GetView<RestaurantDetailsController> {
                           }),
                           8.kheightBox,
                           nCalendarButton('Pick-up', () {
-                            Get.toNamed('/restaurant-menu');
+                            Get.toNamed('/restaurant-menu',
+                                arguments: {'isfromPickup': true});
                           }),
                           8.kheightBox,
                           nCalendarButton('Delivery', () {
@@ -262,7 +263,8 @@ class RestaurantDetailsView extends GetView<RestaurantDetailsController> {
                       15.kheightBox,
                       GestureDetector(
                           onTap: () {
-                            Get.toNamed('/restaurant-menu');
+                            Get.toNamed('/restaurant-menu',
+                                arguments: {'isfromPickup': false});
                           },
                           child: Image.asset(ImageConstant.menu)),
                       15.kheightBox,

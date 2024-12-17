@@ -154,7 +154,6 @@ class DishDeatailsView extends GetView<DishDeatailsController> {
                     Wrap(spacing: 8, runSpacing: 8, children: [
                       ...controller.ingredients.asMap().entries.map(
                         (entry) {
-                          int index = entry.key;
                           String i = entry.value;
                           return Card(
                             elevation: 0,
