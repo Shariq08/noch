@@ -74,7 +74,7 @@ class ClaimBusinessFormView extends GetView {
                       ),
                       8.kheightBox,
                       TextField(
-                          decoration: textformdecorationwithutborder(
+                          decoration: textformdecorationwithoutborder(
                               hint: 'Enter your name')),
                       8.kheightBox,
                       Text(
@@ -84,7 +84,7 @@ class ClaimBusinessFormView extends GetView {
                       ),
                       8.kheightBox,
                       TextField(
-                        decoration: textformdecorationwithutborder(
+                        decoration: textformdecorationwithoutborder(
                             hint: 'Enter  email'),
                       ),
                       8.kheightBox,
@@ -95,7 +95,7 @@ class ClaimBusinessFormView extends GetView {
                       ),
                       8.kheightBox,
                       TextField(
-                        decoration: textformdecorationwithutborder(
+                        decoration: textformdecorationwithoutborder(
                             hint: 'Enter address'),
                       ),
                       8.kheightBox,

@@ -4,7 +4,10 @@ import 'package:get/get.dart';
 import 'package:noch/app/components/noch_appbar.dart';
 import 'package:noch/app/constants/image_constant.dart';
 import 'package:noch/app/modules/about_restaurant/views/about_restaurant_view.dart';
+import 'package:noch/app/modules/cart/views/payment_confirmed_view.dart';
+import 'package:noch/app/modules/gathering/views/gathering_details_view.dart';
 import 'package:noch/app/services/colors.dart';
+import 'package:noch/app/services/custom_button.dart';
 import 'package:noch/app/services/responsive_size.dart';
 import 'package:noch/app/services/text_style_util.dart';
 
@@ -125,11 +128,40 @@ class GatheringView extends GetView<GatheringController> {
                         style: TextStyleUtil.openSans600(
                             color: ColorUtil.nblackText),
                       ),
+                      8.kheightBox,
+                      Container(
+                        height: 94.kh,
+                        decoration: BoxDecoration(
+                            color: ColorUtil.whitetText,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(24))),
+                      )
                     ],
                   ),
                 ),
               )
             ],
+          ),
+        ),
+        extendBody: true,
+        bottomNavigationBar: Container(
+          height: 80.kh,
+          decoration: BoxDecoration(
+              color: ColorUtil.whitetText,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(24), topRight: Radius.circular(24))),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              children: [
+                expandedButton(
+                  title: 'Proceed',
+                  onPressed: () {
+                    Get.to(() => GatheringDetailsView());
+                  },
+                )
+              ],
+            ),
           ),
         ),
       ),

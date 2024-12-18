@@ -114,16 +114,20 @@ class CustomButton extends StatelessWidget {
 }
 
 Expanded expandedButton(
-    {Function()? onPressed, String? title, double fontsize = 14}) {
+    {Function()? onPressed,
+    String? title,
+    double fontsize = 14,
+    Color backgroundColor = ColorUtil.nButtonColor,
+    Color disablebackgroundColor = ColorUtil.nButtonColor}) {
   return Expanded(
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          elevation: 0,
-          backgroundColor: ColorUtil.nButtonColor,
-        ),
+            elevation: 0,
+            backgroundColor: backgroundColor,
+            disabledBackgroundColor: disablebackgroundColor),
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 16, horizontal: 50),
           child: Text(

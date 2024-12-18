@@ -8,6 +8,7 @@ import 'package:noch/app/services/text_style_util.dart';
 
 class RestaurantMenuController extends GetxController {
   late bool isFromPickup;
+  late bool isFromDelivery;
   var partySize = 1.obs;
   RxMap<int, int> orderSizes = <int, int>{}.obs;
   RxMap<int, bool> showEditIcon = <int, bool>{}.obs;
@@ -29,6 +30,7 @@ class RestaurantMenuController extends GetxController {
   @override
   void onInit() {
     isFromPickup = Get.arguments?['isfromPickup'] ?? false;
+    isFromDelivery = Get.arguments?['isfromdelivery'] ?? false;
     addonOrderSizes = List<int>.filled(addsonItems.length, 0).obs;
     super.onInit();
   }

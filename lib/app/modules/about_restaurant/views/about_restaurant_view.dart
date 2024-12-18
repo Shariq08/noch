@@ -197,7 +197,10 @@ class AboutRestaurantView extends GetView<AboutRestaurantController> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Get.toNamed(Routes.RESTAURANT_MENU);
+                            Get.toNamed(Routes.RESTAURANT_MENU, arguments: {
+                              'isfromPickup': false,
+                              'isfromdelivery': false
+                            });
                           },
                           child: Card(
                             elevation: 0,

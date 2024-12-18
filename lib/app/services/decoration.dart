@@ -23,7 +23,7 @@ InputDecoration textFormInputDecoration(String hinttext) {
   );
 }
 
-InputDecoration textformdecorationwithutborder(
+InputDecoration textformdecorationwithoutborder(
     {String? hint, double radius = 80}) {
   return InputDecoration(
     hintText: hint,

@@ -95,4 +95,5 @@ class ImageConstant {
   static String cartfood = 'assets/images/cart_food.jpg';
   static String mastercard = 'assets/images/mastercard.png';
   static String visa = 'assets/images/visa.png';
+  static String pizza = 'assets/images/pizza.png';
 }

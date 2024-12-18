@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:noch/app/constants/image_constant.dart';
 import 'package:noch/app/modules/home/views/home_view.dart';
+import 'package:noch/app/modules/reels/views/home2_view.dart';
 import 'package:noch/app/modules/restaurant/views/restaurant_view.dart';
 import 'package:noch/app/services/colors.dart';
 import 'package:noch/app/services/responsive_size.dart';
@@ -12,7 +13,7 @@ class NavigationView extends GetView<NavigationController> {
   NavigationView({super.key});
   final List<Widget> pages = [
     HomeView(),
-    HomeView(),
+    Home2View(),
     RestaurantView(),
     HomeView(),
     HomeView(),
