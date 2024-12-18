@@ -26,13 +26,14 @@ class TextStyleUtil {
   static TextStyle openSans600(
       {Color color = ColorUtil.whitetText,
       double fontSize = 14,
-      FontStyle fontStyle = FontStyle.normal}) {
+      FontStyle fontStyle = FontStyle.normal,
+      TextDecoration decoration = TextDecoration.none}) {
     return GoogleFonts.openSans(
-      fontStyle: fontStyle,
-      color: color,
-      fontSize: fontSize,
-      fontWeight: FontWeight.w600,
-    );
+        fontStyle: fontStyle,
+        color: color,
+        fontSize: fontSize,
+        fontWeight: FontWeight.w600,
+        decoration: decoration);
   }
 
   static TextStyle openSans700(

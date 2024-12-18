@@ -65,7 +65,8 @@ class CommentsView extends GetView<HomeController> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8),
+              padding:
+                  const EdgeInsets.only(left: 8, right: 8, bottom: 70, top: 16),
               child: TextFormField(
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(

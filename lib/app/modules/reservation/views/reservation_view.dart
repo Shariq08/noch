@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:noch/app/constants/image_constant.dart';
+import 'package:noch/app/routes/app_pages.dart';
 import 'package:noch/app/services/colors.dart';
 import 'package:noch/app/services/custom_button.dart';
 import 'package:noch/app/services/responsive_size.dart';
@@ -123,7 +124,7 @@ class ReservationView extends GetView<ReservationController> {
                       ),
                       8.kheightBox,
                       Obx(() => ExpansionTile(
-                            key: expansionkey,
+                            key: UniqueKey(),
                             initiallyExpanded: controller.isExpanded.value,
                             onExpansionChanged: (value) {
                               controller.isExpanded.value = value;
@@ -164,22 +165,24 @@ class ReservationView extends GetView<ReservationController> {
                                   ],
                                 ),
                               ),
-                              // 8.kheightBox,
-                              // InkWell(
-                              //   onTap: () {
-                              //     controller.updateBookingTitle('Gathering');
-                              //   },
-                              //   child: Row(
-                              //     mainAxisAlignment: MainAxisAlignment.start,
-                              //     children: [
-                              //       Text(
-                              //         'Gathering',
-                              //         style: TextStyleUtil.openSans600(
-                              //             fontSize: 16, color: ColorUtil.nblackText),
-                              //       ),
-                              //     ],
-                              //   ),
-                              // )
+                              16.kheightBox,
+                              InkWell(
+                                onTap: () {
+                                  controller.updateBookingTitle('Normal');
+                                  controller.toggleExpansion();
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Normal',
+                                      style: TextStyleUtil.openSans600(
+                                          fontSize: 16,
+                                          color: ColorUtil.nblackText),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ],
                           )),
                       24.kheightBox,
@@ -375,116 +378,184 @@ class ReservationView extends GetView<ReservationController> {
                         },
                       ),
                       16.kheightBox,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Image.asset(
-                            ImageConstant.gallery2,
-                          ),
-                          Text(
-                            'Layout',
-                            style: TextStyleUtil.openSans400(
-                                fontSize: 14, color: ColorUtil.nblackText),
-                          )
-                        ],
+                      Obx(
+                        () => Row(
+                          mainAxisAlignment: controller.isGathering.value
+                              ? MainAxisAlignment.spaceBetween
+                              : MainAxisAlignment.end,
+                          children: [
+                            Visibility(
+                              visible: controller.isGathering.value,
+                              child: Text(
+                                'Seating preference',
+                                style: TextStyleUtil.openSans600(
+                                    fontSize: 18, color: ColorUtil.nblackText),
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Image.asset(
+                                  ImageConstant.gallery2,
+                                ),
+                                Text(
+                                  'Layout',
+                                  style: TextStyleUtil.openSans400(
+                                      fontSize: 14,
+                                      color: ColorUtil.nblackText),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                       8.kheightBox,
-                      ExpansionTile(
-                        dense: true,
-                        title: Text(
-                          'Table preference (optional)',
-                          style: TextStyleUtil.openSans600(
-                              fontSize: 16, color: ColorUtil.nblackText),
+                      Obx(
+                        () => Visibility(
+                          visible: controller.isGathering.value,
+                          child: Wrap(
+                            spacing: 12,
+                            runSpacing: 8,
+                            children: [
+                              ...controller.seatpref
+                                  .asMap()
+                                  .entries
+                                  .map((entry) {
+                                int index = entry.key;
+                                String i = entry.value;
+
+                                return GestureDetector(
+                                  onTap: () {
+                                    controller.toggleSeatPref(index);
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 12, vertical: 8),
+                                    decoration: BoxDecoration(
+                                      color: controller.selectedSeatPref
+                                              .contains(index)
+                                          ? ColorUtil.nButtonColor
+                                          : ColorUtil.whitetText,
+                                      border: Border.all(
+                                        color: ColorUtil.ncircleavatar,
+                                      ),
+                                      borderRadius: BorderRadius.circular(40),
+                                    ),
+                                    child: Text(
+                                      i,
+                                      style: TextStyleUtil.openSans400(
+                                          fontSize: 14,
+                                          color: ColorUtil.nblackText),
+                                    ),
+                                  ),
+                                );
+                              }),
+                            ],
+                          ),
                         ),
-                        backgroundColor: ColorUtil.whitetText,
-                        collapsedBackgroundColor: ColorUtil.whitetText,
-                        collapsedShape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(24))),
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(24))),
-                        children: [
-                          Obx(() => Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Wrap(
-                                  spacing: 12,
-                                  runSpacing: 8,
-                                  children: [
-                                    ...controller.tablepref
-                                        .asMap()
-                                        .entries
-                                        .map((entry) {
-                                      int index = entry.key;
-                                      String i = entry.value;
+                      ),
+                      Obx(
+                        () => Visibility(
+                          visible: !controller.isGathering.value,
+                          child: ExpansionTile(
+                            dense: true,
+                            title: Text(
+                              'Table preference (optional)',
+                              style: TextStyleUtil.openSans600(
+                                  fontSize: 16, color: ColorUtil.nblackText),
+                            ),
+                            backgroundColor: ColorUtil.whitetText,
+                            collapsedBackgroundColor: ColorUtil.whitetText,
+                            collapsedShape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(24))),
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(24))),
+                            children: [
+                              Obx(() => Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Wrap(
+                                      spacing: 12,
+                                      runSpacing: 8,
+                                      children: [
+                                        ...controller.tablepref
+                                            .asMap()
+                                            .entries
+                                            .map((entry) {
+                                          int index = entry.key;
+                                          String i = entry.value;
 
-                                      return GestureDetector(
-                                        onTap: () {
-                                          controller.toggleTablePref(index);
-                                        },
-                                        child: Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 12, vertical: 8),
-                                          decoration: BoxDecoration(
-                                            color: controller.selectedTablePref
-                                                    .contains(index)
-                                                ? ColorUtil.nButtonColor
-                                                : ColorUtil.whitetText,
-                                            border: Border.all(
-                                              color: ColorUtil.ncircleavatar,
+                                          return GestureDetector(
+                                            onTap: () {
+                                              controller.toggleTablePref(index);
+                                            },
+                                            child: Container(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 12, vertical: 8),
+                                              decoration: BoxDecoration(
+                                                color: controller
+                                                        .selectedTablePref
+                                                        .contains(index)
+                                                    ? ColorUtil.nButtonColor
+                                                    : ColorUtil.whitetText,
+                                                border: Border.all(
+                                                  color:
+                                                      ColorUtil.ncircleavatar,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(40),
+                                              ),
+                                              child: Text(
+                                                i,
+                                                style: TextStyle(
+                                                  color: ColorUtil.nblackText,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(40),
-                                          ),
-                                          child: Text(
-                                            i,
-                                            style: TextStyle(
-                                              color: ColorUtil.nblackText,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    }),
-                                  ],
-                                ),
-                              ))
+                                          );
+                                        }),
+                                      ],
+                                    ),
+                                  ))
 
-                          // LayoutBuilder(
-                          //   builder: (BuildContext context,
-                          //       BoxConstraints constraints) {
-                          //     int crossAxisCount = (constraints.maxWidth / 150)
-                          //         .floor()
-                          //         .clamp(2, 3);
-                          //     return GridView.builder(
-                          //       shrinkWrap: true,
-                          //       physics: NeverScrollableScrollPhysics(),
-                          //       itemCount: 10,
-                          //       gridDelegate:
-                          //           SliverGridDelegateWithMaxCrossAxisExtent(
-                          //         maxCrossAxisExtent: 200,
-                          //         crossAxisSpacing: 16,
-                          //         mainAxisSpacing: 16,
-                          //         childAspectRatio: 3.5,
-                          //       ),
-                          //       itemBuilder: (context, index) {
-                          //         String pref = controller.getTablePref(index);
-                          //         return Obx(() {
-                          //           return slotChip(
-                          //             isIcon: false,
-                          //             time: pref,
-                          //             isselected: controller.selectedTablePref
-                          //                 .contains(index),
-                          //             onTap: () =>
-                          //                 controller.toggleTablePref(index),
-                          //           );
-                          //         });
-                          //       },
-                          //     );
-                          //   },
-                          // ),
-                        ],
+                              // LayoutBuilder(
+                              //   builder: (BuildContext context,
+                              //       BoxConstraints constraints) {
+                              //     int crossAxisCount = (constraints.maxWidth / 150)
+                              //         .floor()
+                              //         .clamp(2, 3);
+                              //     return GridView.builder(
+                              //       shrinkWrap: true,
+                              //       physics: NeverScrollableScrollPhysics(),
+                              //       itemCount: 10,
+                              //       gridDelegate:
+                              //           SliverGridDelegateWithMaxCrossAxisExtent(
+                              //         maxCrossAxisExtent: 200,
+                              //         crossAxisSpacing: 16,
+                              //         mainAxisSpacing: 16,
+                              //         childAspectRatio: 3.5,
+                              //       ),
+                              //       itemBuilder: (context, index) {
+                              //         String pref = controller.getTablePref(index);
+                              //         return Obx(() {
+                              //           return slotChip(
+                              //             isIcon: false,
+                              //             time: pref,
+                              //             isselected: controller.selectedTablePref
+                              //                 .contains(index),
+                              //             onTap: () =>
+                              //                 controller.toggleTablePref(index),
+                              //           );
+                              //         });
+                              //       },
+                              //     );
+                              //   },
+                              // ),
+                            ],
+                          ),
+                        ),
                       ),
                       16.kheightBox,
                       Text(
@@ -521,11 +592,15 @@ class ReservationView extends GetView<ReservationController> {
                       40.kheightBox,
                       Row(
                         children: [
-                          expandedButton(
+                          Obx(() => expandedButton(
                               onPressed: () {
-                                Get.offNamed('/reservation-confirmation');
+                                controller.isGathering.value
+                                    ? Get.toNamed(Routes.GATHERING)
+                                    : Get.offNamed('/reservation-confirmation');
                               },
-                              title: 'Create reservation')
+                              title: controller.isGathering.value
+                                  ? 'Continue'
+                                  : 'Create reservation'))
                         ],
                       ),
                       16.kheightBox
@@ -566,11 +641,8 @@ class ReservationView extends GetView<ReservationController> {
             8.kwidthBox,
             Text(
               time!,
-              style: TextStyle(
-                color: ColorUtil.nblackText,
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-              ),
+              style: TextStyleUtil.openSans400(
+                  fontSize: 14, color: ColorUtil.nblackText),
             ),
           ],
         ),

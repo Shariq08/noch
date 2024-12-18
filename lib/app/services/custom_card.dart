@@ -1,9 +1,8 @@
-import 'dart:ffi';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:noch/app/constants/image_constant.dart';
+import 'package:noch/app/routes/app_pages.dart';
 import 'package:noch/app/services/colors.dart';
 import 'package:noch/app/services/responsive_size.dart';
 import 'package:noch/app/services/text_style_util.dart';
@@ -168,7 +167,7 @@ class RestroCard extends StatelessWidget {
                         children: [
                           restrCardChip(
                             onTap: () {
-                              Get.toNamed('/restaurant-review');
+                              Get.toNamed(Routes.RESTAURANT_REVIEW);
                             },
                             imgpath: ImageConstant.nochFork,
                             title: '4.5',

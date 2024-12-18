@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:noch/app/modules/onboarding/views/onboarding_view.dart';
 import 'package:noch/app/services/colors.dart';
 import 'package:noch/app/services/custom_widget.dart';
 import 'package:noch/app/services/responsive_size.dart';

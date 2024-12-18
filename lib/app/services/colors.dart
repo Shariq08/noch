@@ -31,7 +31,7 @@ extension ColorUtil on BuildContext {
   static const Color whitetText = Color.fromRGBO(255, 255, 255, 1);
   static Color blackgrey = HexColor('#5D5D5D');
   static const Color nButtonColor = Color.fromRGBO(255, 210, 0, 1);
-  static const Color nButtonColorLight = Color.fromRGBO(255, 244, 191, 1);
+  static Color nButtonColorLight = HexColor('#FFF4BF');
   static const Color nButtonColorLight2 = Color.fromRGBO(255, 241, 229, 1);
   static Color nblackText = HexColor('#111111');
 
@@ -46,4 +46,5 @@ extension ColorUtil on BuildContext {
   static Color restrReviewProfile = HexColor("#3A2115");
   static Color nblackText2 = HexColor("#CCC8B2");
   static Color blackgrey2 = HexColor("#373737");
+  static Color paymentcardbackground = HexColor("#F6F6F6");
 }

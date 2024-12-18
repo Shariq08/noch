@@ -92,4 +92,8 @@ class ImageConstant {
   static String event = 'assets/images/event.jpg';
   static String calendarclear = 'assets/images/calendar-clear.png';
   static String eventdetail = 'assets/images/event_detail.jpg';
+  static String cartfood = 'assets/images/cart_food.jpg';
+  static String mastercard = 'assets/images/mastercard.png';
+  static String visa = 'assets/images/visa.png';
+  static String pizza = 'assets/images/pizza.png';
 }

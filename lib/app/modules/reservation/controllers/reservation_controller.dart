@@ -5,7 +5,8 @@ import 'package:noch/app/services/storage.dart';
 class ReservationController extends GetxController {
   var selectedSlots = <int>[].obs;
   var selectedTablePref = <int>[].obs;
-
+  var selectedSeatPref = <int>[].obs;
+  var isGathering = false.obs;
   void toggleSelection(int index) {
     if (selectedSlots.contains(index)) {
       selectedSlots.remove(index);
@@ -21,6 +22,22 @@ class ReservationController extends GetxController {
       selectedTablePref.add(index);
     }
   }
+
+  void toggleSeatPref(int index) {
+    if (selectedSeatPref.contains(index)) {
+      selectedSeatPref.remove(index);
+    } else {
+      selectedSeatPref.add(index);
+    }
+  }
+
+  List<String> seatpref = [
+    'Indoors',
+    'Al Fresco',
+    'Patio',
+    'Near Bar',
+    'Near Pool Table'
+  ];
 
   List<String> tablepref = [
     'Al Fresco',
@@ -69,6 +86,11 @@ class ReservationController extends GetxController {
   var iscalendarVisible = false.obs;
   void updateBookingTitle(String newTitle) {
     bookingTitle.value = newTitle;
+    if (newTitle == 'Gathering') {
+      isGathering.value = true;
+    } else {
+      isGathering.value = false;
+    }
   }
 
   void toggleExpansion() {

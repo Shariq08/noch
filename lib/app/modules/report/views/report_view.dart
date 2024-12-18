@@ -72,7 +72,7 @@ class ReportView extends GetView<ReportController> {
                     ),
                     8.kheightBox,
                     TextField(
-                        decoration: textformdecorationwithutborder(
+                        decoration: textformdecorationwithoutborder(
                             hint: 'Enter your name')),
                     8.kheightBox,
                     Text(
@@ -83,7 +83,7 @@ class ReportView extends GetView<ReportController> {
                     8.kheightBox,
                     TextField(
                       decoration:
-                          textformdecorationwithutborder(hint: 'Enter  email'),
+                          textformdecorationwithoutborder(hint: 'Enter  email'),
                     ),
                     8.kheightBox,
                     Text(
@@ -94,7 +94,7 @@ class ReportView extends GetView<ReportController> {
                     8.kheightBox,
                     TextField(
                       maxLines: 3,
-                      decoration: textformdecorationwithutborder(
+                      decoration: textformdecorationwithoutborder(
                           hint: 'Enter messages', radius: 24),
                     ),
                     22.kheightBox,

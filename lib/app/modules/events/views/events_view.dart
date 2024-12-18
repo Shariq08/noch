@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:noch/app/components/noch_appbar.dart';
 import 'package:noch/app/constants/image_constant.dart';
 import 'package:noch/app/modules/events/views/event_details_view.dart';
-import 'package:noch/app/routes/app_pages.dart';
 import 'package:noch/app/services/colors.dart';
 import 'package:noch/app/services/responsive_size.dart';
 import 'package:noch/app/services/text_style_util.dart';

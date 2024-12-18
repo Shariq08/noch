@@ -69,7 +69,7 @@ class RestaurantDetailsView extends GetView<RestaurantDetailsController> {
               top: 60,
               child: IconButton(
                   onPressed: () {
-                    Get.back();
+                    Get.offNamed(Routes.RESTAURANT);
                   },
                   icon: Icon(
                     Icons.arrow_back,
@@ -96,11 +96,17 @@ class RestaurantDetailsView extends GetView<RestaurantDetailsController> {
                           }),
                           8.kheightBox,
                           nCalendarButton('Pick-up', () {
-                            Get.toNamed('/restaurant-menu');
+                            Get.toNamed(Routes.RESTAURANT_MENU, arguments: {
+                              'isfromPickup': true,
+                              'isfromdelivery': false
+                            });
                           }),
                           8.kheightBox,
                           nCalendarButton('Delivery', () {
-                            Get.toNamed(Routes.DELIVERY);
+                            Get.toNamed(Routes.RESTAURANT_MENU, arguments: {
+                              'isfromPickup': true,
+                              'isfromdelivery': true
+                            });
                           })
                         ],
                       ),
@@ -262,7 +268,8 @@ class RestaurantDetailsView extends GetView<RestaurantDetailsController> {
                       15.kheightBox,
                       GestureDetector(
                           onTap: () {
-                            Get.toNamed('/restaurant-menu');
+                            Get.toNamed('/restaurant-menu',
+                                arguments: {'isfromPickup': false});
                           },
                           child: Image.asset(ImageConstant.menu)),
                       15.kheightBox,
