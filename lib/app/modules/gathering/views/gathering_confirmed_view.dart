@@ -47,15 +47,21 @@ class GatheringConfirmedView extends GetView {
             ),
             centerTitle: true,
           ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Center(
-              child: ConfirmationCard(
-                title: 'Your Gathering request was \n successfully Received',
-                subtitle:
-                    'Hi Nichole, you can access your gatherings from your profile menu.',
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Center(
+                  child: ConfirmationCard(
+                    title:
+                        'Your Gathering request was \n successfully Received',
+                    subtitle:
+                        'Hi Nichole, you can access your gatherings from your profile menu.',
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
           bottomNavigationBar: Container(
             height: 80,

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:noch/app/constants/image_constant.dart';
 import 'package:noch/app/modules/home/views/home_view.dart';
 import 'package:noch/app/modules/reels/views/home2_view.dart';
+import 'package:noch/app/modules/reservation/views/reservation_list_view.dart';
 import 'package:noch/app/modules/restaurant/views/restaurant_view.dart';
 import 'package:noch/app/services/colors.dart';
 import 'package:noch/app/services/responsive_size.dart';
@@ -15,7 +16,7 @@ class NavigationView extends GetView<NavigationController> {
     HomeView(),
     Home2View(),
     RestaurantView(),
-    HomeView(),
+    ReservationListView(),
     HomeView(),
   ];
   @override

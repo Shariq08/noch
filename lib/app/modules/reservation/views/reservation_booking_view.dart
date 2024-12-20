@@ -11,8 +11,8 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 import '../controllers/reservation_controller.dart';
 
-class ReservationView extends GetView<ReservationController> {
-  const ReservationView({super.key});
+class ReservationBookingView extends GetView<ReservationController> {
+  const ReservationBookingView({super.key});
   @override
   Widget build(BuildContext context) {
     GlobalKey expansionkey = GlobalKey();

@@ -37,21 +37,27 @@ class TextStyleUtil {
   }
 
   static TextStyle openSans700(
-      {Color color = ColorUtil.whitetText, double fontSize = 32}) {
+      {Color color = ColorUtil.whitetText,
+      double fontSize = 32,
+      TextDecoration decoration = TextDecoration.none}) {
     return GoogleFonts.openSans(
-      color: color,
-      fontSize: fontSize,
-      fontWeight: FontWeight.w700,
-    );
+        color: color,
+        fontSize: fontSize,
+        fontWeight: FontWeight.w700,
+        decoration: decoration);
   }
 
   static TextStyle openSans400(
-      {Color color = ColorUtil.whitetText, double fontSize = 18}) {
+      {Color color = ColorUtil.whitetText,
+      double fontSize = 18,
+      double letterSpacing = 0.2,
+      double height = 1}) {
     return GoogleFonts.openSans(
         color: color,
         fontSize: fontSize,
         fontWeight: FontWeight.w400,
-        letterSpacing: 0.2);
+        letterSpacing: letterSpacing,
+        height: height);
   }
 
   static TextStyle openSans500(

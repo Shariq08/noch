@@ -1,5 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:noch/app/modules/navigation/controllers/navigation_controller.dart';
+import 'package:noch/app/modules/reservation/views/reservation_list_view.dart';
+import 'package:noch/app/routes/app_pages.dart';
 import 'package:noch/app/services/storage.dart';
 
 class ReservationController extends GetxController {
@@ -7,6 +12,16 @@ class ReservationController extends GetxController {
   var selectedTablePref = <int>[].obs;
   var selectedSeatPref = <int>[].obs;
   var isGathering = false.obs;
+  final navigationController = Get.find<NavigationController>();
+  TextEditingController messageController = TextEditingController();
+  RxList<String> messages = <String>[].obs;
+
+  void addMessage(String message) {
+    if (message.trim().isNotEmpty) {
+      messages.add(message);
+    }
+  }
+
   void toggleSelection(int index) {
     if (selectedSlots.contains(index)) {
       selectedSlots.remove(index);
@@ -117,4 +132,139 @@ class ReservationController extends GetxController {
     today.value = day;
     isDateSelected.value = true;
   }
+
+  void goToReservation() {
+    navigationController.changePage(3);
+    navigationController.resetController();
+    Get.offNamed('/navigation');
+  }
+
+  final reservationsHistory = <ReservationHistory>[
+    ReservationHistory(
+      restaurantName: "Outback steak",
+      address: "835 13th St. Paso Robles, CA 93446",
+      time: "6:30 PM",
+      date: DateFormat('MM/dd/yyyy').format(DateTime.now()),
+      status: 'Canceled',
+    ),
+    ReservationHistory(
+      restaurantName: "Outback steak",
+      address: "835 13th St. Paso Robles, CA 93446",
+      time: "6:30 PM",
+      date: DateFormat('MM/dd/yyyy').format(DateTime.now()),
+      status: 'Completed',
+    ),
+    ReservationHistory(
+      restaurantName: "Outback steak",
+      address: "835 13th St. Paso Robles, CA 93446",
+      time: "6:30 PM",
+      date: DateFormat('MM/dd/yyyy').format(DateTime.now()),
+      status: 'Completed',
+    ),
+    ReservationHistory(
+      restaurantName: "Outback steak",
+      address: "835 13th St. Paso Robles, CA 93446",
+      time: "6:30 PM",
+      date: DateFormat('MM/dd/yyyy').format(DateTime.now()),
+      status: 'Completed',
+    ),
+    ReservationHistory(
+      restaurantName: "Outback steak",
+      address: "835 13th St. Paso Robles, CA 93446",
+      time: "6:30 PM",
+      date: DateFormat('MM/dd/yyyy').format(DateTime.now()),
+      status: 'Completed',
+    ),
+    ReservationHistory(
+      restaurantName: "Outback steak",
+      address: "835 13th St. Paso Robles, CA 93446",
+      time: "6:30 PM",
+      date: DateFormat('MM/dd/yyyy').format(DateTime.now()),
+      status: 'Completed',
+    ),
+    ReservationHistory(
+      restaurantName: "Outback steak",
+      address: "835 13th St. Paso Robles, CA 93446",
+      time: "6:30 PM",
+      date: DateFormat('MM/dd/yyyy').format(DateTime.now()),
+      status: 'Completed',
+    ),
+  ].obs;
+  final reservations = <Reservation>[
+    Reservation(
+      restaurantName: "Outback steak",
+      address: "835 13th St. Paso Robles, CA 93446",
+      time: "6:30 PM",
+      date: DateFormat('MM/dd/yyyy').format(DateTime.now()),
+    ),
+    Reservation(
+      restaurantName: "Outback steak",
+      address: "835 13th St. Paso Robles, CA 93446",
+      time: "6:30 PM",
+      date: "01/01/2025",
+    ),
+    Reservation(
+      restaurantName: "Outback steak",
+      address: "835 13th St. Paso Robles, CA 93446",
+      time: "6:30 PM",
+      date: "01/01/2025",
+    ),
+    Reservation(
+      restaurantName: "Outback steak",
+      address: "835 13th St. Paso Robles, CA 93446",
+      time: "6:30 PM",
+      date: "01/01/2025",
+    ),
+    Reservation(
+      restaurantName: "Outback steak",
+      address: "835 13th St. Paso Robles, CA 93446",
+      time: "6:30 PM",
+      date: "01/01/2025",
+    ),
+    Reservation(
+      restaurantName: "Outback steak",
+      address: "835 13th St. Paso Robles, CA 93446",
+      time: "6:30 PM",
+      date: "01/01/2025",
+    ),
+    Reservation(
+      restaurantName: "Outback steak",
+      address: "835 13th St. Paso Robles, CA 93446",
+      time: "6:30 PM",
+      date: "01/01/2025",
+    ),
+  ].obs;
+  String getStatus(String date) {
+    final today = DateFormat('MM/dd/yyyy').format(DateTime.now());
+    return date == today ? "Ongoing" : "Confirmed";
+  }
+}
+
+class Reservation {
+  final String restaurantName;
+  final String address;
+  final String time;
+  final String date;
+
+  Reservation({
+    required this.restaurantName,
+    required this.address,
+    required this.time,
+    required this.date,
+  });
+}
+
+class ReservationHistory {
+  final String restaurantName;
+  final String address;
+  final String time;
+  final String date;
+  final String status;
+
+  ReservationHistory(
+      {required this.restaurantName,
+      required this.address,
+      required this.time,
+      required this.date,
+      required this.status});
 }

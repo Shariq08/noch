@@ -129,7 +129,8 @@ class RestaurantDetailsView extends GetView<RestaurantDetailsController> {
                     child: Text(
                       'The Hatch Rotisserie & Bar',
                       style: TextStyleUtil.openSans700(fontSize: 24),
-                      overflow: TextOverflow.ellipsis,
+                      overflow: TextOverflow.visible,
+                      softWrap: true,
                       maxLines: 3,
                     ),
                   ),
