@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:noch/app/components/noch_appbar.dart';
 import 'package:noch/app/constants/image_constant.dart';
 import 'package:noch/app/modules/reservation/views/checkin_table_view.dart';
+import 'package:noch/app/modules/reservation/views/checkin_table_withoutserver_view.dart';
 import 'package:noch/app/services/colors.dart';
 import 'package:noch/app/services/custom_button.dart';
 import 'package:noch/app/services/custom_card.dart';
@@ -52,7 +53,11 @@ class ReservationCheckinView extends GetView {
                   expandedButton(
                     title: 'Continue',
                     onPressed: () {
-                      Get.to(() => CheckinTableView());
+                      Get.to(
+                          () =>
+                              // CheckinTableView()
+                              CheckinTableWithoutserverView(),
+                          arguments: {'isOrderSelect': false});
                     },
                   )
                 ],

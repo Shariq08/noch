@@ -102,4 +102,5 @@ class ImageConstant {
   static String qrScan = 'assets/images/qr-scan.png';
   static String server = 'assets/images/server.png';
   static String menuIcon2 = 'assets/images/menuicon2.png';
+  static String userchat = 'assets/images/userchat.png';
 }

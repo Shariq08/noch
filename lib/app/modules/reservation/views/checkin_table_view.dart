@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:noch/app/components/noch_appbar.dart';
 import 'package:noch/app/constants/image_constant.dart';
-import 'package:noch/app/modules/reservation/views/server_chat_view.dart';
+
 import 'package:noch/app/routes/app_pages.dart';
 import 'package:noch/app/services/colors.dart';
-import 'package:noch/app/services/custom_button.dart';
+
 import 'package:noch/app/services/responsive_size.dart';
 import 'package:noch/app/services/text_style_util.dart';
 
@@ -39,7 +39,6 @@ class CheckinTableView extends GetView {
           backgroundColor: Colors.transparent,
           appBar: NochAppbar(
             title: 'Table Details',
-            hasLeading: false,
             actions: [
               Padding(
                 padding: const EdgeInsets.only(right: 16.0),
@@ -136,113 +135,114 @@ class CheckinTableView extends GetView {
                   ],
                 ),
                 16.kheightBox,
-                Card(
-                  color: ColorUtil.whitetText,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(24))),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 24, horizontal: 8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Your Order',
-                          style: TextStyleUtil.openSans600(
-                              fontSize: 16, color: ColorUtil.nblackText),
-                        ),
-                        16.kheightBox,
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Items',
-                              style: TextStyleUtil.openSans600(
-                                  fontSize: 14, color: ColorUtil.nblackText),
-                            ),
-                            Text(
-                              'Quantity',
-                              style: TextStyleUtil.openSans600(
-                                  fontSize: 14, color: ColorUtil.nblackText),
-                            ),
-                            Text(
-                              'Price',
-                              style: TextStyleUtil.openSans600(
-                                  fontSize: 14, color: ColorUtil.nblackText),
-                            )
-                          ],
-                        ),
-                        12.kheightBox,
-                        customOrderDetail(
-                            name: 'Hatch Burger', quantity: '1', price: r'$10'),
-                        12.kheightBox,
-                        customOrderDetail(
-                            name: 'Key Lime Pie', quantity: '1', price: r'$10'),
-                        12.kheightBox,
-                        customOrderDetail(
-                            name: 'Cappuccino', quantity: '1', price: r'$10'),
-                        12.kheightBox,
-                        customOrderDetail(
-                            name: 'Hatch Burger', quantity: '1', price: r'$10'),
-                        12.kheightBox,
-                        customOrderDetail(
-                            name: 'Key Lime Pie', quantity: '1', price: r'$10'),
-                        12.kheightBox,
-                        customOrderDetail(
-                            name: 'Hatch Burger', quantity: '1', price: r'$10'),
-                        12.kheightBox,
-                        customOrderDetail(
-                            name: 'Hatch Burger', quantity: '1', price: r'$10'),
-                        12.kheightBox,
-                        customOrderDetail(
-                            name: 'Hatch Burger', quantity: '1', price: r'$10'),
-                        12.kheightBox,
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Item total',
-                              style: TextStyleUtil.openSans600(
-                                  fontSize: 14, color: ColorUtil.nblackText),
-                            ),
-                            Text(
-                              r'$60',
-                              style: TextStyleUtil.openSans600(
-                                  fontSize: 14, color: ColorUtil.nblackText),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
                 // Card(
                 //   color: ColorUtil.whitetText,
                 //   shape: RoundedRectangleBorder(
                 //       borderRadius: BorderRadius.all(Radius.circular(24))),
                 //   child: Padding(
-                //     padding: const EdgeInsets.all(16.0),
-                //     child: Row(
-                //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     padding:
+                //         const EdgeInsets.symmetric(vertical: 24, horizontal: 8),
+                //     child: Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
                 //       children: [
+                //         Text(
+                //           'Your Order',
+                //           style: TextStyleUtil.openSans600(
+                //               fontSize: 16, color: ColorUtil.nblackText),
+                //         ),
+                //         16.kheightBox,
                 //         Row(
+                //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 //           children: [
-                //             Image.asset(
-                //               ImageConstant.menuIcon2,
-                //             ),
-                //             8.kwidthBox,
                 //             Text(
-                //               'Request for Menu',
-                //               style: TextStyleUtil.openSans400(
-                //                   fontSize: 16, color: ColorUtil.nblackText),
+                //               'Items',
+                //               style: TextStyleUtil.openSans600(
+                //                   fontSize: 14, color: ColorUtil.nblackText),
+                //             ),
+                //             Text(
+                //               'Quantity',
+                //               style: TextStyleUtil.openSans600(
+                //                   fontSize: 14, color: ColorUtil.nblackText),
+                //             ),
+                //             Text(
+                //               'Price',
+                //               style: TextStyleUtil.openSans600(
+                //                   fontSize: 14, color: ColorUtil.nblackText),
                 //             )
                 //           ],
                 //         ),
-                //         Icon(Icons.keyboard_arrow_right),
+                //         12.kheightBox,
+                //         customOrderDetail(
+                //             name: 'Hatch Burger', quantity: '1', price: r'$10'),
+                //         12.kheightBox,
+                //         customOrderDetail(
+                //             name: 'Key Lime Pie', quantity: '1', price: r'$10'),
+                //         12.kheightBox,
+                //         customOrderDetail(
+                //             name: 'Cappuccino', quantity: '1', price: r'$10'),
+                //         12.kheightBox,
+                //         customOrderDetail(
+                //             name: 'Hatch Burger', quantity: '1', price: r'$10'),
+                //         12.kheightBox,
+                //         customOrderDetail(
+                //             name: 'Key Lime Pie', quantity: '1', price: r'$10'),
+                //         12.kheightBox,
+                //         customOrderDetail(
+                //             name: 'Hatch Burger', quantity: '1', price: r'$10'),
+                //         12.kheightBox,
+                //         customOrderDetail(
+                //             name: 'Hatch Burger', quantity: '1', price: r'$10'),
+                //         12.kheightBox,
+                //         customOrderDetail(
+                //             name: 'Hatch Burger', quantity: '1', price: r'$10'),
+                //         12.kheightBox,
+                //         Row(
+                //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //           children: [
+                //             Text(
+                //               'Item total',
+                //               style: TextStyleUtil.openSans600(
+                //                   fontSize: 14, color: ColorUtil.nblackText),
+                //             ),
+                //             Text(
+                //               r'$60',
+                //               style: TextStyleUtil.openSans600(
+                //                   fontSize: 14, color: ColorUtil.nblackText),
+                //             )
+                //           ],
+                //         ),
                 //       ],
                 //     ),
                 //   ),
                 // ),
+
+                Card(
+                  color: ColorUtil.whitetText,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(24))),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Image.asset(
+                              ImageConstant.menuIcon2,
+                            ),
+                            8.kwidthBox,
+                            Text(
+                              'Request for Menu',
+                              style: TextStyleUtil.openSans400(
+                                  fontSize: 16, color: ColorUtil.nblackText),
+                            )
+                          ],
+                        ),
+                        Icon(Icons.keyboard_arrow_right),
+                      ],
+                    ),
+                  ),
+                ),
 
                 24.kheightBox,
                 ElevatedButton(

@@ -68,6 +68,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "chat_message_timestamp",
+      "rootUri": "file:///C:/Users/mdsha/AppData/Local/Pub/Cache/hosted/pub.dev/chat_message_timestamp-0.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
+    },
+    {
       "name": "clock",
       "rootUri": "file:///C:/Users/mdsha/AppData/Local/Pub/Cache/hosted/pub.dev/clock-1.1.1",
       "packageUri": "lib/",
@@ -842,7 +848,7 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2024-12-19T06:42:52.100478Z",
+  "generated": "2024-12-23T05:53:28.799999Z",
   "generator": "pub",
   "generatorVersion": "3.5.4",
   "flutterRoot": "file:///C:/Program%20Files/flutter",

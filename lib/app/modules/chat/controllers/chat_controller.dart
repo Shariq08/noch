@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:noch/app/models/chat.dart';
 
 class ChatController extends GetxController {
-  List<Chat> chatList = Chat.generate();
+  RxList<Chat> chatList = RxList<Chat>(Chat.generate());
 
   late final ScrollController scrollController = ScrollController();
   late final TextEditingController textEditingController =
@@ -12,14 +12,14 @@ class ChatController extends GetxController {
 
   Future<void> onFieldSubmitted() async {
     if (!isTextFieldEnable) return;
-
-    chatList = [
-      ...chatList,
-      Chat.sent(message: textEditingController.text),
-    ];
+    chatList.add(Chat.sent(message: textEditingController.text));
+    // chatList = [
+    //   ...chatList,
+    //   Chat.sent(message: textEditingController.text),
+    // ];
 
     scrollController.animateTo(
-      0,
+      scrollController.position.maxScrollExtent + 100.0,
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );

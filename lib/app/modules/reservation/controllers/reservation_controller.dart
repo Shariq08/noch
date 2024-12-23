@@ -1,11 +1,20 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:noch/app/models/reservation.dart';
+import 'package:noch/app/modules/cart/controllers/cart_controller.dart';
 import 'package:noch/app/modules/navigation/controllers/navigation_controller.dart';
 import 'package:noch/app/modules/reservation/views/reservation_list_view.dart';
 import 'package:noch/app/routes/app_pages.dart';
+import 'package:noch/app/services/colors.dart';
+import 'package:noch/app/services/custom_button.dart';
+import 'package:noch/app/services/responsive_size.dart';
 import 'package:noch/app/services/storage.dart';
+import 'package:noch/app/services/text_style_util.dart';
 
 class ReservationController extends GetxController {
   var selectedSlots = <int>[].obs;
@@ -13,12 +22,25 @@ class ReservationController extends GetxController {
   var selectedSeatPref = <int>[].obs;
   var isGathering = false.obs;
   final navigationController = Get.find<NavigationController>();
+  final cartController = Get.find<CartController>();
   TextEditingController messageController = TextEditingController();
   RxList<String> messages = <String>[].obs;
+  final ImagePicker _picker = ImagePicker();
+  var capturedPhoto = Rxn<File>();
+  var isTable = false.obs;
 
   void addMessage(String message) {
     if (message.trim().isNotEmpty) {
       messages.add(message);
+    }
+  }
+
+  Future<void> openCamera() async {
+    final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+    if (photo != null) {
+      capturedPhoto.value = File(photo.path);
+      isTable.value = true;
+      openBottomSheet();
     }
   }
 
@@ -136,7 +158,19 @@ class ReservationController extends GetxController {
   void goToReservation() {
     navigationController.changePage(3);
     navigationController.resetController();
-    Get.offNamed('/navigation');
+    Get.offNamed(Routes.NAVIGATION);
+  }
+
+  void goToHome() {
+    cartController.addOrderItems();
+    Get.offNamed(Routes.NAVIGATION);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!navigationController.pageController.hasClients) {
+        navigationController.resetController();
+      }
+
+      navigationController.changePage(0);
+    });
   }
 
   final reservationsHistory = <ReservationHistory>[
@@ -238,33 +272,57 @@ class ReservationController extends GetxController {
     final today = DateFormat('MM/dd/yyyy').format(DateTime.now());
     return date == today ? "Ongoing" : "Confirmed";
   }
-}
 
-class Reservation {
-  final String restaurantName;
-  final String address;
-  final String time;
-  final String date;
-
-  Reservation({
-    required this.restaurantName,
-    required this.address,
-    required this.time,
-    required this.date,
-  });
-}
-
-class ReservationHistory {
-  final String restaurantName;
-  final String address;
-  final String time;
-  final String date;
-  final String status;
-
-  ReservationHistory(
-      {required this.restaurantName,
-      required this.address,
-      required this.time,
-      required this.date,
-      required this.status});
+  void openBottomSheet() {
+    Get.bottomSheet(
+      Container(
+        decoration: BoxDecoration(
+          color: ColorUtil.whitetrnsprnt,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                IconButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: Icon(
+                      Icons.close,
+                      color: ColorUtil.nblackText,
+                    )),
+              ],
+            ),
+            Text(
+              "Your table no. is confirmed",
+              style: TextStyleUtil.openSans600(
+                  fontSize: 18, color: ColorUtil.nblackText),
+            ),
+            32.kheightBox,
+            Text(
+              "Now you can start ordering",
+              style: TextStyleUtil.openSans600(
+                  fontSize: 16, color: ColorUtil.nblackText),
+            ),
+            32.kheightBox,
+            Row(
+              children: [
+                expandedButton(
+                  title: 'Continue',
+                  onPressed: () {
+                    Get.back();
+                  },
+                )
+              ],
+            ),
+            48.kheightBox
+          ],
+        ),
+      ),
+      isScrollControlled: true,
+    );
+  }
 }

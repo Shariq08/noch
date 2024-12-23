@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:noch/app/constants/image_constant.dart';
+import 'package:noch/app/modules/cart/views/floating_cart.dart';
 import 'package:noch/app/modules/home/views/home_view.dart';
 import 'package:noch/app/modules/reels/controllers/reels_controller.dart';
 import 'package:noch/app/services/colors.dart';
@@ -30,962 +31,968 @@ class ReelsView extends GetView<ReelsController> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        SizedBox(
-          height: 100.h,
-          width: 100.w,
-          child: Image.asset(
-            imgpath!,
-            fit: BoxFit.fill,
-          ),
-        ),
-        Positioned(
-          bottom: 80,
-          left: 0,
-          right: 0,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  username!,
-                  style: TextStyleUtil.openSans700(fontSize: 20),
-                ),
-                4.kheightBox,
-                ConstrainedBox(
-                  constraints: BoxConstraints(maxWidth: isLive ? 200 : 250),
-                  child: Text(
-                    desc!,
-                    style: TextStyleUtil.openSans400(fontSize: 14),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 3,
-                  ),
-                ),
-              ],
+    return Stack(children: [
+      Stack(
+        children: [
+          SizedBox(
+            height: 100.h,
+            width: 100.w,
+            child: Image.asset(
+              imgpath!,
+              fit: BoxFit.fill,
             ),
           ),
-        ),
-        Positioned(
-          bottom: 70,
-          right: 0,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              // Like Button
-              Column(
+
+          Positioned(
+            bottom: 80,
+            left: 0,
+            right: 0,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  IconButton(
-                    icon: Icon(
-                      Icons.favorite,
-                      size: 32,
-                      color: islike == true ? Colors.red : ColorUtil.whitetText,
-                    ),
-                    onPressed: onPressedLike,
-                  ),
                   Text(
-                    '2000',
-                    style: TextStyleUtil.openSans400(fontSize: 12),
+                    username!,
+                    style: TextStyleUtil.openSans700(fontSize: 20),
+                  ),
+                  4.kheightBox,
+                  ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: isLive ? 200 : 250),
+                    child: Text(
+                      desc!,
+                      style: TextStyleUtil.openSans400(fontSize: 14),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
+                    ),
                   ),
                 ],
               ),
-              SizedBox(height: 16),
-
-              // Comment Button
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Column(
+            ),
+          ),
+          Positioned(
+            bottom: 70,
+            right: 0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                // Like Button
+                Column(
                   children: [
-                    InkWell(
-                      onTap: onPressedComment,
-                      child: reelIcon(
-                        imgpath: ImageConstant.chatbubbles,
-                        label: '100',
+                    IconButton(
+                      icon: Icon(
+                        Icons.favorite,
+                        size: 32,
+                        color:
+                            islike == true ? Colors.red : ColorUtil.whitetText,
                       ),
+                      onPressed: onPressedLike,
                     ),
-                    SizedBox(height: 16),
+                    Text(
+                      '2000',
+                      style: TextStyleUtil.openSans400(fontSize: 12),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 16),
 
-                    // Share Button
-                    reelIcon(imgpath: ImageConstant.share, label: '70'),
-                    SizedBox(height: 16),
+                // Comment Button
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Column(
+                    children: [
+                      InkWell(
+                        onTap: onPressedComment,
+                        child: reelIcon(
+                          imgpath: ImageConstant.chatbubbles,
+                          label: '100',
+                        ),
+                      ),
+                      SizedBox(height: 16),
 
-                    // Save Button
-                    InkWell(
-                      onTap: () {
-                        showModalBottomSheet(
-                            backgroundColor: ColorUtil.whitetrnsprnt,
-                            context: context,
-                            builder: (BuildContext context) {
-                              return RestrBottomshet(
-                                onFavTap: () {
-                                  Get.back();
-                                  showModalBottomSheet(
-                                      backgroundColor: ColorUtil.whitetrnsprnt,
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return Column(
-                                          children: [
-                                            37.kheightBox,
-                                            Text(
-                                              'Save to favorites',
-                                              style: TextStyleUtil.openSans600(
-                                                  fontSize: 18,
-                                                  color: ColorUtil.nblackText),
-                                            ),
-                                            53.kheightBox,
-                                            Form(
-                                                child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 16.0,
-                                                      vertical: 8),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    'Enter a note (optional)',
-                                                    style: TextStyleUtil
-                                                        .openSans600(
-                                                            color: ColorUtil
-                                                                .nblackText),
-                                                  ),
-                                                  8.kheightBox,
-                                                  TextFormField(
-                                                    maxLines: 3,
-                                                    decoration: InputDecoration(
-                                                      hintText: 'Enter here',
-                                                      fillColor:
-                                                          ColorUtil.whitetText,
-                                                      filled: true,
-                                                      focusedBorder: const OutlineInputBorder(
-                                                          borderSide: BorderSide(
+                      // Share Button
+                      reelIcon(imgpath: ImageConstant.share, label: '70'),
+                      SizedBox(height: 16),
+
+                      // Save Button
+                      InkWell(
+                        onTap: () {
+                          showModalBottomSheet(
+                              backgroundColor: ColorUtil.whitetrnsprnt,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return RestrBottomshet(
+                                  onFavTap: () {
+                                    Get.back();
+                                    showModalBottomSheet(
+                                        backgroundColor:
+                                            ColorUtil.whitetrnsprnt,
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return Column(
+                                            children: [
+                                              37.kheightBox,
+                                              Text(
+                                                'Save to favorites',
+                                                style:
+                                                    TextStyleUtil.openSans600(
+                                                        fontSize: 18,
+                                                        color: ColorUtil
+                                                            .nblackText),
+                                              ),
+                                              53.kheightBox,
+                                              Form(
+                                                  child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 16.0,
+                                                        vertical: 8),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      'Enter a note (optional)',
+                                                      style: TextStyleUtil
+                                                          .openSans600(
                                                               color: ColorUtil
-                                                                  .whitetrnsprnt),
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          20))),
-                                                      border:
-                                                          const OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: ColorUtil
-                                                                    .whitetrnsprnt,
-                                                              ),
-                                                              borderRadius: BorderRadius
-                                                                  .all(Radius
-                                                                      .circular(
-                                                                          20))),
-                                                      enabledBorder:
-                                                          const OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: ColorUtil
-                                                                    .whitetrnsprnt,
-                                                              ),
-                                                              borderRadius: BorderRadius
-                                                                  .all(Radius
-                                                                      .circular(
-                                                                          20))),
+                                                                  .nblackText),
                                                     ),
-                                                  ),
-                                                  8.kheightBox,
-                                                  Row(children: [
-                                                    Expanded(
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .symmetric(
-                                                                horizontal: 8.0,
-                                                                vertical: 16),
-                                                        child: ElevatedButton(
-                                                          onPressed: () {},
-                                                          style: ElevatedButton
-                                                              .styleFrom(
-                                                            elevation: 0,
-                                                            backgroundColor:
-                                                                ColorUtil
-                                                                    .nButtonColor,
+                                                    8.kheightBox,
+                                                    TextFormField(
+                                                      maxLines: 3,
+                                                      decoration:
+                                                          InputDecoration(
+                                                        hintText: 'Enter here',
+                                                        fillColor: ColorUtil
+                                                            .whitetText,
+                                                        filled: true,
+                                                        focusedBorder: const OutlineInputBorder(
+                                                            borderSide: BorderSide(
+                                                                color: ColorUtil
+                                                                    .whitetrnsprnt),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            20))),
+                                                        border:
+                                                            const OutlineInputBorder(
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: ColorUtil
+                                                                      .whitetrnsprnt,
+                                                                ),
+                                                                borderRadius: BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            20))),
+                                                        enabledBorder:
+                                                            const OutlineInputBorder(
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: ColorUtil
+                                                                      .whitetrnsprnt,
+                                                                ),
+                                                                borderRadius: BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            20))),
+                                                      ),
+                                                    ),
+                                                    8.kheightBox,
+                                                    Row(children: [
+                                                      Expanded(
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .symmetric(
+                                                                  horizontal:
+                                                                      8.0,
+                                                                  vertical: 16),
+                                                          child: ElevatedButton(
+                                                            onPressed: () {},
+                                                            style:
+                                                                ElevatedButton
+                                                                    .styleFrom(
+                                                              elevation: 0,
+                                                              backgroundColor:
+                                                                  ColorUtil
+                                                                      .nButtonColor,
+                                                            ),
+                                                            child: Padding(
+                                                              padding: EdgeInsets
+                                                                  .symmetric(
+                                                                      vertical:
+                                                                          16,
+                                                                      horizontal:
+                                                                          50),
+                                                              child: Text(
+                                                                'Add to favorites',
+                                                                style: TextStyleUtil
+                                                                    .openSans600(
+                                                                        fontSize:
+                                                                            16,
+                                                                        color: ColorUtil
+                                                                            .nblackText),
+                                                              ),
+                                                            ),
                                                           ),
-                                                          child: Padding(
-                                                            padding: EdgeInsets
-                                                                .symmetric(
-                                                                    vertical:
-                                                                        16,
-                                                                    horizontal:
-                                                                        50),
-                                                            child: Text(
-                                                              'Add to favorites',
+                                                        ),
+                                                      )
+                                                    ])
+                                                  ],
+                                                ),
+                                              ))
+                                            ],
+                                          );
+                                        });
+                                  },
+                                  onListTap: () {
+                                    Get.back();
+                                    showModalBottomSheet(
+                                        backgroundColor:
+                                            ColorUtil.whitetrnsprnt,
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return Column(
+                                            children: [
+                                              37.kheightBox,
+                                              Text(
+                                                'Save to List',
+                                                style:
+                                                    TextStyleUtil.openSans600(
+                                                        fontSize: 18,
+                                                        color: ColorUtil
+                                                            .nblackText),
+                                              ),
+                                              16.kheightBox,
+                                              InkWell(
+                                                onTap: () {
+                                                  Get.back();
+                                                  showModalBottomSheet(
+                                                      context: context,
+                                                      backgroundColor: ColorUtil
+                                                          .whitetrnsprnt,
+                                                      builder: (BuildContext
+                                                          context) {
+                                                        return Column(
+                                                          children: [
+                                                            24.kheightBox,
+                                                            Text(
+                                                              'New List',
                                                               style: TextStyleUtil
                                                                   .openSans600(
                                                                       fontSize:
-                                                                          16,
+                                                                          18,
                                                                       color: ColorUtil
                                                                           .nblackText),
                                                             ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    )
-                                                  ])
-                                                ],
-                                              ),
-                                            ))
-                                          ],
-                                        );
-                                      });
-                                },
-                                onListTap: () {
-                                  Get.back();
-                                  showModalBottomSheet(
-                                      backgroundColor: ColorUtil.whitetrnsprnt,
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return Column(
-                                          children: [
-                                            37.kheightBox,
-                                            Text(
-                                              'Save to List',
-                                              style: TextStyleUtil.openSans600(
-                                                  fontSize: 18,
-                                                  color: ColorUtil.nblackText),
-                                            ),
-                                            16.kheightBox,
-                                            InkWell(
-                                              onTap: () {
-                                                Get.back();
-                                                showModalBottomSheet(
-                                                    context: context,
-                                                    backgroundColor:
-                                                        ColorUtil.whitetrnsprnt,
-                                                    builder:
-                                                        (BuildContext context) {
-                                                      return Column(
+                                                            53.kheightBox,
+                                                            Form(
+                                                                child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .symmetric(
+                                                                      horizontal:
+                                                                          16.0,
+                                                                      vertical:
+                                                                          8),
+                                                              child: Column(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text(
+                                                                    'List Name',
+                                                                    style: TextStyleUtil
+                                                                        .openSans600(
+                                                                            color:
+                                                                                ColorUtil.nblackText),
+                                                                  ),
+                                                                  8.kheightBox,
+                                                                  TextFormField(
+                                                                    decoration:
+                                                                        InputDecoration(
+                                                                      hintText:
+                                                                          'Enter your list name here.',
+                                                                      fillColor:
+                                                                          ColorUtil
+                                                                              .whitetText,
+                                                                      filled:
+                                                                          true,
+                                                                      focusedBorder: const OutlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(color: ColorUtil.whitetrnsprnt),
+                                                                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                                                                      border: const OutlineInputBorder(
+                                                                          borderSide: BorderSide(
+                                                                            color:
+                                                                                ColorUtil.whitetrnsprnt,
+                                                                          ),
+                                                                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                                                                      enabledBorder: const OutlineInputBorder(
+                                                                          borderSide: BorderSide(
+                                                                            color:
+                                                                                ColorUtil.whitetrnsprnt,
+                                                                          ),
+                                                                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                                                                    ),
+                                                                  ),
+                                                                  24.kheightBox,
+                                                                  Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: [
+                                                                        ElevatedButton(
+                                                                          onPressed:
+                                                                              () {
+                                                                            Get.back();
+                                                                          },
+                                                                          style:
+                                                                              ElevatedButton.styleFrom(
+                                                                            // maximumSize:
+                                                                            // Size(163.kw,
+                                                                            //     56.kh),
+                                                                            side:
+                                                                                BorderSide(color: ColorUtil.nButtonColor),
+                                                                            elevation:
+                                                                                0,
+                                                                            backgroundColor:
+                                                                                ColorUtil.nButtonColorLight2,
+                                                                          ),
+                                                                          child:
+                                                                              Padding(
+                                                                            padding:
+                                                                                const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16),
+                                                                            child:
+                                                                                Text(
+                                                                              'Cancel',
+                                                                              style: TextStyleUtil.openSans600(fontSize: 16, color: ColorUtil.nblackText),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        ElevatedButton(
+                                                                          onPressed:
+                                                                              () {
+                                                                            Get.back();
+                                                                          },
+                                                                          style:
+                                                                              ElevatedButton.styleFrom(
+                                                                            elevation:
+                                                                                0,
+                                                                            backgroundColor:
+                                                                                ColorUtil.nButtonColor,
+                                                                          ),
+                                                                          child:
+                                                                              Padding(
+                                                                            padding:
+                                                                                EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+                                                                            child:
+                                                                                Text(
+                                                                              'Save',
+                                                                              style: TextStyleUtil.openSans600(fontSize: 16, color: ColorUtil.nblackText),
+                                                                            ),
+                                                                          ),
+                                                                        )
+                                                                      ])
+                                                                ],
+                                                              ),
+                                                            ))
+                                                          ],
+                                                        );
+                                                      });
+                                                },
+                                                child: Padding(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                      horizontal: 16.0),
+                                                  child: Container(
+                                                    height: 64.kh,
+                                                    width: 100.w,
+                                                    decoration: BoxDecoration(
+                                                        color: ColorUtil
+                                                            .whitetText,
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    40))),
+                                                    child: Padding(
+                                                      padding: const EdgeInsets
+                                                          .symmetric(
+                                                          horizontal: 16.0,
+                                                          vertical: 20),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
                                                         children: [
-                                                          24.kheightBox,
                                                           Text(
-                                                            'New List',
+                                                            'Add New List',
                                                             style: TextStyleUtil
-                                                                .openSans600(
+                                                                .openSans400(
                                                                     fontSize:
-                                                                        18,
+                                                                        16,
                                                                     color: ColorUtil
                                                                         .nblackText),
                                                           ),
-                                                          53.kheightBox,
-                                                          Form(
-                                                              child: Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .symmetric(
-                                                                    horizontal:
-                                                                        16.0,
-                                                                    vertical:
-                                                                        8),
-                                                            child: Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                  'List Name',
-                                                                  style: TextStyleUtil
-                                                                      .openSans600(
-                                                                          color:
-                                                                              ColorUtil.nblackText),
-                                                                ),
-                                                                8.kheightBox,
-                                                                TextFormField(
-                                                                  decoration:
-                                                                      InputDecoration(
-                                                                    hintText:
-                                                                        'Enter your list name here.',
-                                                                    fillColor:
-                                                                        ColorUtil
-                                                                            .whitetText,
-                                                                    filled:
-                                                                        true,
-                                                                    focusedBorder: const OutlineInputBorder(
-                                                                        borderSide: BorderSide(
-                                                                            color: ColorUtil
-                                                                                .whitetrnsprnt),
-                                                                        borderRadius:
-                                                                            BorderRadius.all(Radius.circular(20))),
-                                                                    border: const OutlineInputBorder(
-                                                                        borderSide: BorderSide(
-                                                                          color:
-                                                                              ColorUtil.whitetrnsprnt,
-                                                                        ),
-                                                                        borderRadius: BorderRadius.all(Radius.circular(20))),
-                                                                    enabledBorder:
-                                                                        const OutlineInputBorder(
-                                                                            borderSide:
-                                                                                BorderSide(
-                                                                              color: ColorUtil.whitetrnsprnt,
-                                                                            ),
-                                                                            borderRadius:
-                                                                                BorderRadius.all(Radius.circular(20))),
-                                                                  ),
-                                                                ),
-                                                                24.kheightBox,
-                                                                Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: [
-                                                                      ElevatedButton(
-                                                                        onPressed:
-                                                                            () {
-                                                                          Get.back();
-                                                                        },
-                                                                        style: ElevatedButton
-                                                                            .styleFrom(
-                                                                          // maximumSize:
-                                                                          // Size(163.kw,
-                                                                          //     56.kh),
-                                                                          side:
-                                                                              BorderSide(color: ColorUtil.nButtonColor),
-                                                                          elevation:
-                                                                              0,
-                                                                          backgroundColor:
-                                                                              ColorUtil.nButtonColorLight2,
-                                                                        ),
-                                                                        child:
-                                                                            Padding(
-                                                                          padding: const EdgeInsets
-                                                                              .symmetric(
-                                                                              horizontal: 32.0,
-                                                                              vertical: 16),
-                                                                          child:
-                                                                              Text(
-                                                                            'Cancel',
-                                                                            style:
-                                                                                TextStyleUtil.openSans600(fontSize: 16, color: ColorUtil.nblackText),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      ElevatedButton(
-                                                                        onPressed:
-                                                                            () {
-                                                                          Get.back();
-                                                                        },
-                                                                        style: ElevatedButton
-                                                                            .styleFrom(
-                                                                          elevation:
-                                                                              0,
-                                                                          backgroundColor:
-                                                                              ColorUtil.nButtonColor,
-                                                                        ),
-                                                                        child:
-                                                                            Padding(
-                                                                          padding: EdgeInsets.symmetric(
-                                                                              vertical: 16,
-                                                                              horizontal: 32),
-                                                                          child:
-                                                                              Text(
-                                                                            'Save',
-                                                                            style:
-                                                                                TextStyleUtil.openSans600(fontSize: 16, color: ColorUtil.nblackText),
-                                                                          ),
-                                                                        ),
-                                                                      )
-                                                                    ])
-                                                              ],
-                                                            ),
-                                                          ))
+                                                          Image.asset(
+                                                              ImageConstant
+                                                                  .addButton)
                                                         ],
-                                                      );
-                                                    });
-                                              },
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 16.0),
-                                                child: Container(
-                                                  height: 64.kh,
-                                                  width: 100.w,
-                                                  decoration: BoxDecoration(
-                                                      color:
-                                                          ColorUtil.whitetText,
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  40))),
-                                                  child: Padding(
-                                                    padding: const EdgeInsets
-                                                        .symmetric(
-                                                        horizontal: 16.0,
-                                                        vertical: 20),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Text(
-                                                          'Add New List',
-                                                          style: TextStyleUtil
-                                                              .openSans400(
-                                                                  fontSize: 16,
-                                                                  color: ColorUtil
-                                                                      .nblackText),
-                                                        ),
-                                                        Image.asset(
-                                                            ImageConstant
-                                                                .addButton)
-                                                      ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                            16.kheightBox,
-                                            saveListCard(),
-                                            saveListCard(),
-                                            saveListCard(),
-                                          ],
-                                        );
-                                      });
-                                },
-                              );
-                            });
-                      },
-                      child: reelIcon(
-                        imgpath: ImageConstant.save,
-                        label: '81',
-                      ),
-                    ),
-                    SizedBox(height: 16),
-                  ],
-                ),
-              ),
-
-              isLive
-                  ? Stack(
-                      children: [
-                        SizedBox(
-                          height: 160.kh,
-                          width: 160.kw,
+                                              16.kheightBox,
+                                              saveListCard(),
+                                              saveListCard(),
+                                              saveListCard(),
+                                            ],
+                                          );
+                                        });
+                                  },
+                                );
+                              });
+                        },
+                        child: reelIcon(
+                          imgpath: ImageConstant.save,
+                          label: '81',
                         ),
-                        Positioned(
-                          left: 30,
-                          bottom: 0,
-                          child: Container(
+                      ),
+                      SizedBox(height: 16),
+                    ],
+                  ),
+                ),
+
+                isLive
+                    ? Stack(
+                        children: [
+                          SizedBox(
                             height: 160.kh,
                             width: 160.kw,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: ColorUtil.nButtonColor,
-                                width: 5,
+                          ),
+                          Positioned(
+                            left: 30,
+                            bottom: 0,
+                            child: Container(
+                              height: 160.kh,
+                              width: 160.kw,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: ColorUtil.nButtonColor,
+                                  width: 5,
+                                ),
                               ),
-                            ),
-                            child: ClipOval(
-                              child: Image.asset(
-                                ImageConstant.live,
-                                fit: BoxFit.fill,
+                              child: ClipOval(
+                                child: Image.asset(
+                                  ImageConstant.live,
+                                  fit: BoxFit.fill,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Positioned(
-                            left: 60,
-                            top: 40,
-                            child: Container(
-                              height: 26.kh,
-                              width: 45.kw,
-                              decoration: BoxDecoration(
-                                  color: ColorUtil.nblack07,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(100))),
-                              child: Center(
-                                child: Text(
-                                  'Live!',
-                                  style:
-                                      TextStyleUtil.openSans600(fontSize: 12),
+                          Positioned(
+                              left: 60,
+                              top: 40,
+                              child: Container(
+                                height: 26.kh,
+                                width: 45.kw,
+                                decoration: BoxDecoration(
+                                    color: ColorUtil.nblack07,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(100))),
+                                child: Center(
+                                  child: Text(
+                                    'Live!',
+                                    style:
+                                        TextStyleUtil.openSans600(fontSize: 12),
+                                  ),
                                 ),
-                              ),
-                            ))
-                      ],
-                    )
-                  : SizedBox.shrink()
-            ],
+                              ))
+                        ],
+                      )
+                    : SizedBox.shrink()
+              ],
+            ),
           ),
-        ),
 
-        // Padding(
-        //   padding: const EdgeInsets.symmetric(vertical: 16),
-        //   child: Column(
-        //     mainAxisAlignment: MainAxisAlignment.end,
-        //     children: [
-        //       Row(
-        //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //         crossAxisAlignment: CrossAxisAlignment.end,
-        //         children: [
-        //           // Left Column
-        //           Padding(
-        //             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        //             child: Column(
-        //               crossAxisAlignment: CrossAxisAlignment.start,
-        //               children: [
-        //                 Text(
-        //                   username!,
-        //                   style: TextStyleUtil.openSans700(fontSize: 20),
-        //                 ),
-        //                 4.kheightBox,
-        //                 ConstrainedBox(
-        //                   constraints:
-        //                       BoxConstraints(maxWidth: isLive ? 200 : 250),
-        //                   child: Text(
-        //                     desc!,
-        //                     style: TextStyleUtil.openSans400(fontSize: 14),
-        //                     overflow: TextOverflow.ellipsis,
-        //                     maxLines: 3,
-        //                   ),
-        //                 ),
-        //               ],
-        //             ),
-        //           ),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(vertical: 16),
+          //   child: Column(
+          //     mainAxisAlignment: MainAxisAlignment.end,
+          //     children: [
+          //       Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         crossAxisAlignment: CrossAxisAlignment.end,
+          //         children: [
+          //           // Left Column
+          //           Padding(
+          //             padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          //             child: Column(
+          //               crossAxisAlignment: CrossAxisAlignment.start,
+          //               children: [
+          //                 Text(
+          //                   username!,
+          //                   style: TextStyleUtil.openSans700(fontSize: 20),
+          //                 ),
+          //                 4.kheightBox,
+          //                 ConstrainedBox(
+          //                   constraints:
+          //                       BoxConstraints(maxWidth: isLive ? 200 : 250),
+          //                   child: Text(
+          //                     desc!,
+          //                     style: TextStyleUtil.openSans400(fontSize: 14),
+          //                     overflow: TextOverflow.ellipsis,
+          //                     maxLines: 3,
+          //                   ),
+          //                 ),
+          //               ],
+          //             ),
+          //           ),
 
-        //           // Right Column
-        //           Column(
-        //             crossAxisAlignment: CrossAxisAlignment.end,
-        //             children: [
-        //               // Like Button
-        //               Column(
-        //                 children: [
-        //                   IconButton(
-        //                     icon: Icon(
-        //                       Icons.favorite,
-        //                       size: 32,
-        //                       color: islike == true
-        //                           ? Colors.red
-        //                           : ColorUtil.whitetText,
-        //                     ),
-        //                     onPressed: onPressedLike,
-        //                   ),
-        //                   Text(
-        //                     '2000',
-        //                     style: TextStyleUtil.openSans400(fontSize: 12),
-        //                   ),
-        //                 ],
-        //               ),
-        //               SizedBox(height: 16),
+          //           // Right Column
+          //           Column(
+          //             crossAxisAlignment: CrossAxisAlignment.end,
+          //             children: [
+          //               // Like Button
+          //               Column(
+          //                 children: [
+          //                   IconButton(
+          //                     icon: Icon(
+          //                       Icons.favorite,
+          //                       size: 32,
+          //                       color: islike == true
+          //                           ? Colors.red
+          //                           : ColorUtil.whitetText,
+          //                     ),
+          //                     onPressed: onPressedLike,
+          //                   ),
+          //                   Text(
+          //                     '2000',
+          //                     style: TextStyleUtil.openSans400(fontSize: 12),
+          //                   ),
+          //                 ],
+          //               ),
+          //               SizedBox(height: 16),
 
-        //               // Comment Button
-        //               Padding(
-        //                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        //                 child: Column(
-        //                   children: [
-        //                     InkWell(
-        //                       onTap: onPressedComment,
-        //                       child: reelIcon(
-        //                         imgpath: ImageConstant.chatbubbles,
-        //                         label: '100',
-        //                       ),
-        //                     ),
-        //                     SizedBox(height: 16),
+          //               // Comment Button
+          //               Padding(
+          //                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          //                 child: Column(
+          //                   children: [
+          //                     InkWell(
+          //                       onTap: onPressedComment,
+          //                       child: reelIcon(
+          //                         imgpath: ImageConstant.chatbubbles,
+          //                         label: '100',
+          //                       ),
+          //                     ),
+          //                     SizedBox(height: 16),
 
-        //                     // Share Button
-        //                     reelIcon(imgpath: ImageConstant.share, label: '70'),
-        //                     SizedBox(height: 16),
+          //                     // Share Button
+          //                     reelIcon(imgpath: ImageConstant.share, label: '70'),
+          //                     SizedBox(height: 16),
 
-        //                     // Save Button
-        //                     InkWell(
-        //                       onTap: () {
-        //                         showModalBottomSheet(
-        //                             backgroundColor: ColorUtil.whitetrnsprnt,
-        //                             context: context,
-        //                             builder: (BuildContext context) {
-        //                               return RestrBottomshet(
-        //                                 onFavTap: () {
-        //                                   Get.back();
-        //                                   showModalBottomSheet(
-        //                                       backgroundColor:
-        //                                           ColorUtil.whitetrnsprnt,
-        //                                       context: context,
-        //                                       builder: (BuildContext context) {
-        //                                         return Column(
-        //                                           children: [
-        //                                             37.kheightBox,
-        //                                             Text(
-        //                                               'Save to favorites',
-        //                                               style: TextStyleUtil
-        //                                                   .openSans600(
-        //                                                       fontSize: 18,
-        //                                                       color: ColorUtil
-        //                                                           .nblackText),
-        //                                             ),
-        //                                             53.kheightBox,
-        //                                             Form(
-        //                                                 child: Padding(
-        //                                               padding: const EdgeInsets
-        //                                                   .symmetric(
-        //                                                   horizontal: 16.0,
-        //                                                   vertical: 8),
-        //                                               child: Column(
-        //                                                 crossAxisAlignment:
-        //                                                     CrossAxisAlignment
-        //                                                         .start,
-        //                                                 children: [
-        //                                                   Text(
-        //                                                     'Enter a note (optional)',
-        //                                                     style: TextStyleUtil
-        //                                                         .openSans600(
-        //                                                             color: ColorUtil
-        //                                                                 .nblackText),
-        //                                                   ),
-        //                                                   8.kheightBox,
-        //                                                   TextFormField(
-        //                                                     maxLines: 3,
-        //                                                     decoration:
-        //                                                         InputDecoration(
-        //                                                       hintText:
-        //                                                           'Enter here',
-        //                                                       fillColor: ColorUtil
-        //                                                           .whitetText,
-        //                                                       filled: true,
-        //                                                       focusedBorder: const OutlineInputBorder(
-        //                                                           borderSide: BorderSide(
-        //                                                               color: ColorUtil
-        //                                                                   .whitetrnsprnt),
-        //                                                           borderRadius:
-        //                                                               BorderRadius.all(
-        //                                                                   Radius.circular(
-        //                                                                       20))),
-        //                                                       border:
-        //                                                           const OutlineInputBorder(
-        //                                                               borderSide:
-        //                                                                   BorderSide(
-        //                                                                 color: ColorUtil
-        //                                                                     .whitetrnsprnt,
-        //                                                               ),
-        //                                                               borderRadius:
-        //                                                                   BorderRadius.all(
-        //                                                                       Radius.circular(20))),
-        //                                                       enabledBorder:
-        //                                                           const OutlineInputBorder(
-        //                                                               borderSide:
-        //                                                                   BorderSide(
-        //                                                                 color: ColorUtil
-        //                                                                     .whitetrnsprnt,
-        //                                                               ),
-        //                                                               borderRadius:
-        //                                                                   BorderRadius.all(
-        //                                                                       Radius.circular(20))),
-        //                                                     ),
-        //                                                   ),
-        //                                                   8.kheightBox,
-        //                                                   Row(children: [
-        //                                                     Expanded(
-        //                                                       child: Padding(
-        //                                                         padding: const EdgeInsets
-        //                                                             .symmetric(
-        //                                                             horizontal:
-        //                                                                 8.0,
-        //                                                             vertical:
-        //                                                                 16),
-        //                                                         child:
-        //                                                             ElevatedButton(
-        //                                                           onPressed:
-        //                                                               () {},
-        //                                                           style: ElevatedButton
-        //                                                               .styleFrom(
-        //                                                             elevation:
-        //                                                                 0,
-        //                                                             backgroundColor:
-        //                                                                 ColorUtil
-        //                                                                     .nButtonColor,
-        //                                                           ),
-        //                                                           child:
-        //                                                               Padding(
-        //                                                             padding: EdgeInsets.symmetric(
-        //                                                                 vertical:
-        //                                                                     16,
-        //                                                                 horizontal:
-        //                                                                     50),
-        //                                                             child: Text(
-        //                                                               'Add to favorites',
-        //                                                               style: TextStyleUtil.openSans600(
-        //                                                                   fontSize:
-        //                                                                       16,
-        //                                                                   color:
-        //                                                                       ColorUtil.nblackText),
-        //                                                             ),
-        //                                                           ),
-        //                                                         ),
-        //                                                       ),
-        //                                                     )
-        //                                                   ])
-        //                                                 ],
-        //                                               ),
-        //                                             ))
-        //                                           ],
-        //                                         );
-        //                                       });
-        //                                 },
-        //                                 onListTap: () {
-        //                                   Get.back();
-        //                                   showModalBottomSheet(
-        //                                       backgroundColor:
-        //                                           ColorUtil.whitetrnsprnt,
-        //                                       context: context,
-        //                                       builder: (BuildContext context) {
-        //                                         return Column(
-        //                                           children: [
-        //                                             37.kheightBox,
-        //                                             Text(
-        //                                               'Save to List',
-        //                                               style: TextStyleUtil
-        //                                                   .openSans600(
-        //                                                       fontSize: 18,
-        //                                                       color: ColorUtil
-        //                                                           .nblackText),
-        //                                             ),
-        //                                             16.kheightBox,
-        //                                             InkWell(
-        //                                               onTap: () {
-        //                                                 Get.back();
-        //                                                 showModalBottomSheet(
-        //                                                     context: context,
-        //                                                     backgroundColor:
-        //                                                         ColorUtil
-        //                                                             .whitetrnsprnt,
-        //                                                     builder:
-        //                                                         (BuildContext
-        //                                                             context) {
-        //                                                       return Column(
-        //                                                         children: [
-        //                                                           24.kheightBox,
-        //                                                           Text(
-        //                                                             'New List',
-        //                                                             style: TextStyleUtil.openSans600(
-        //                                                                 fontSize:
-        //                                                                     18,
-        //                                                                 color: ColorUtil
-        //                                                                     .nblackText),
-        //                                                           ),
-        //                                                           53.kheightBox,
-        //                                                           Form(
-        //                                                               child:
-        //                                                                   Padding(
-        //                                                             padding: const EdgeInsets
-        //                                                                 .symmetric(
-        //                                                                 horizontal:
-        //                                                                     16.0,
-        //                                                                 vertical:
-        //                                                                     8),
-        //                                                             child:
-        //                                                                 Column(
-        //                                                               crossAxisAlignment:
-        //                                                                   CrossAxisAlignment
-        //                                                                       .start,
-        //                                                               children: [
-        //                                                                 Text(
-        //                                                                   'List Name',
-        //                                                                   style:
-        //                                                                       TextStyleUtil.openSans600(color: ColorUtil.nblackText),
-        //                                                                 ),
-        //                                                                 8.kheightBox,
-        //                                                                 TextFormField(
-        //                                                                   decoration:
-        //                                                                       InputDecoration(
-        //                                                                     hintText:
-        //                                                                         'Enter your list name here.',
-        //                                                                     fillColor:
-        //                                                                         ColorUtil.whitetText,
-        //                                                                     filled:
-        //                                                                         true,
-        //                                                                     focusedBorder:
-        //                                                                         const OutlineInputBorder(borderSide: BorderSide(color: ColorUtil.whitetrnsprnt), borderRadius: BorderRadius.all(Radius.circular(20))),
-        //                                                                     border: const OutlineInputBorder(
-        //                                                                         borderSide: BorderSide(
-        //                                                                           color: ColorUtil.whitetrnsprnt,
-        //                                                                         ),
-        //                                                                         borderRadius: BorderRadius.all(Radius.circular(20))),
-        //                                                                     enabledBorder: const OutlineInputBorder(
-        //                                                                         borderSide: BorderSide(
-        //                                                                           color: ColorUtil.whitetrnsprnt,
-        //                                                                         ),
-        //                                                                         borderRadius: BorderRadius.all(Radius.circular(20))),
-        //                                                                   ),
-        //                                                                 ),
-        //                                                                 24.kheightBox,
-        //                                                                 Row(
-        //                                                                     mainAxisAlignment:
-        //                                                                         MainAxisAlignment.spaceBetween,
-        //                                                                     children: [
-        //                                                                       ElevatedButton(
-        //                                                                         onPressed: () {
-        //                                                                           Get.back();
-        //                                                                         },
-        //                                                                         style: ElevatedButton.styleFrom(
-        //                                                                           // maximumSize:
-        //                                                                           // Size(163.kw,
-        //                                                                           //     56.kh),
-        //                                                                           side: BorderSide(color: ColorUtil.nButtonColor),
-        //                                                                           elevation: 0,
-        //                                                                           backgroundColor: ColorUtil.nButtonColorLight2,
-        //                                                                         ),
-        //                                                                         child: Padding(
-        //                                                                           padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16),
-        //                                                                           child: Text(
-        //                                                                             'Cancel',
-        //                                                                             style: TextStyleUtil.openSans600(fontSize: 16, color: ColorUtil.nblackText),
-        //                                                                           ),
-        //                                                                         ),
-        //                                                                       ),
-        //                                                                       ElevatedButton(
-        //                                                                         onPressed: () {
-        //                                                                           Get.back();
-        //                                                                         },
-        //                                                                         style: ElevatedButton.styleFrom(
-        //                                                                           elevation: 0,
-        //                                                                           backgroundColor: ColorUtil.nButtonColor,
-        //                                                                         ),
-        //                                                                         child: Padding(
-        //                                                                           padding: EdgeInsets.symmetric(vertical: 16, horizontal: 32),
-        //                                                                           child: Text(
-        //                                                                             'Save',
-        //                                                                             style: TextStyleUtil.openSans600(fontSize: 16, color: ColorUtil.nblackText),
-        //                                                                           ),
-        //                                                                         ),
-        //                                                                       )
-        //                                                                     ])
-        //                                                               ],
-        //                                                             ),
-        //                                                           ))
-        //                                                         ],
-        //                                                       );
-        //                                                     });
-        //                                               },
-        //                                               child: Padding(
-        //                                                 padding:
-        //                                                     const EdgeInsets
-        //                                                         .symmetric(
-        //                                                         horizontal:
-        //                                                             16.0),
-        //                                                 child: Container(
-        //                                                   height: 64.kh,
-        //                                                   width: 100.w,
-        //                                                   decoration: BoxDecoration(
-        //                                                       color: ColorUtil
-        //                                                           .whitetText,
-        //                                                       borderRadius: BorderRadius
-        //                                                           .all(Radius
-        //                                                               .circular(
-        //                                                                   40))),
-        //                                                   child: Padding(
-        //                                                     padding:
-        //                                                         const EdgeInsets
-        //                                                             .symmetric(
-        //                                                             horizontal:
-        //                                                                 16.0,
-        //                                                             vertical:
-        //                                                                 20),
-        //                                                     child: Row(
-        //                                                       mainAxisAlignment:
-        //                                                           MainAxisAlignment
-        //                                                               .spaceBetween,
-        //                                                       children: [
-        //                                                         Text(
-        //                                                           'Add New List',
-        //                                                           style: TextStyleUtil.openSans400(
-        //                                                               fontSize:
-        //                                                                   16,
-        //                                                               color: ColorUtil
-        //                                                                   .nblackText),
-        //                                                         ),
-        //                                                         Image.asset(
-        //                                                             ImageConstant
-        //                                                                 .addButton)
-        //                                                       ],
-        //                                                     ),
-        //                                                   ),
-        //                                                 ),
-        //                                               ),
-        //                                             ),
-        //                                             16.kheightBox,
-        //                                             saveListCard(),
-        //                                             saveListCard(),
-        //                                             saveListCard(),
-        //                                           ],
-        //                                         );
-        //                                       });
-        //                                 },
-        //                               );
-        //                             });
-        //                       },
-        //                       child: reelIcon(
-        //                         imgpath: ImageConstant.save,
-        //                         label: '81',
-        //                       ),
-        //                     ),
-        //                     SizedBox(height: 16),
-        //                   ],
-        //                 ),
-        //               ),
+          //                     // Save Button
+          //                     InkWell(
+          //                       onTap: () {
+          //                         showModalBottomSheet(
+          //                             backgroundColor: ColorUtil.whitetrnsprnt,
+          //                             context: context,
+          //                             builder: (BuildContext context) {
+          //                               return RestrBottomshet(
+          //                                 onFavTap: () {
+          //                                   Get.back();
+          //                                   showModalBottomSheet(
+          //                                       backgroundColor:
+          //                                           ColorUtil.whitetrnsprnt,
+          //                                       context: context,
+          //                                       builder: (BuildContext context) {
+          //                                         return Column(
+          //                                           children: [
+          //                                             37.kheightBox,
+          //                                             Text(
+          //                                               'Save to favorites',
+          //                                               style: TextStyleUtil
+          //                                                   .openSans600(
+          //                                                       fontSize: 18,
+          //                                                       color: ColorUtil
+          //                                                           .nblackText),
+          //                                             ),
+          //                                             53.kheightBox,
+          //                                             Form(
+          //                                                 child: Padding(
+          //                                               padding: const EdgeInsets
+          //                                                   .symmetric(
+          //                                                   horizontal: 16.0,
+          //                                                   vertical: 8),
+          //                                               child: Column(
+          //                                                 crossAxisAlignment:
+          //                                                     CrossAxisAlignment
+          //                                                         .start,
+          //                                                 children: [
+          //                                                   Text(
+          //                                                     'Enter a note (optional)',
+          //                                                     style: TextStyleUtil
+          //                                                         .openSans600(
+          //                                                             color: ColorUtil
+          //                                                                 .nblackText),
+          //                                                   ),
+          //                                                   8.kheightBox,
+          //                                                   TextFormField(
+          //                                                     maxLines: 3,
+          //                                                     decoration:
+          //                                                         InputDecoration(
+          //                                                       hintText:
+          //                                                           'Enter here',
+          //                                                       fillColor: ColorUtil
+          //                                                           .whitetText,
+          //                                                       filled: true,
+          //                                                       focusedBorder: const OutlineInputBorder(
+          //                                                           borderSide: BorderSide(
+          //                                                               color: ColorUtil
+          //                                                                   .whitetrnsprnt),
+          //                                                           borderRadius:
+          //                                                               BorderRadius.all(
+          //                                                                   Radius.circular(
+          //                                                                       20))),
+          //                                                       border:
+          //                                                           const OutlineInputBorder(
+          //                                                               borderSide:
+          //                                                                   BorderSide(
+          //                                                                 color: ColorUtil
+          //                                                                     .whitetrnsprnt,
+          //                                                               ),
+          //                                                               borderRadius:
+          //                                                                   BorderRadius.all(
+          //                                                                       Radius.circular(20))),
+          //                                                       enabledBorder:
+          //                                                           const OutlineInputBorder(
+          //                                                               borderSide:
+          //                                                                   BorderSide(
+          //                                                                 color: ColorUtil
+          //                                                                     .whitetrnsprnt,
+          //                                                               ),
+          //                                                               borderRadius:
+          //                                                                   BorderRadius.all(
+          //                                                                       Radius.circular(20))),
+          //                                                     ),
+          //                                                   ),
+          //                                                   8.kheightBox,
+          //                                                   Row(children: [
+          //                                                     Expanded(
+          //                                                       child: Padding(
+          //                                                         padding: const EdgeInsets
+          //                                                             .symmetric(
+          //                                                             horizontal:
+          //                                                                 8.0,
+          //                                                             vertical:
+          //                                                                 16),
+          //                                                         child:
+          //                                                             ElevatedButton(
+          //                                                           onPressed:
+          //                                                               () {},
+          //                                                           style: ElevatedButton
+          //                                                               .styleFrom(
+          //                                                             elevation:
+          //                                                                 0,
+          //                                                             backgroundColor:
+          //                                                                 ColorUtil
+          //                                                                     .nButtonColor,
+          //                                                           ),
+          //                                                           child:
+          //                                                               Padding(
+          //                                                             padding: EdgeInsets.symmetric(
+          //                                                                 vertical:
+          //                                                                     16,
+          //                                                                 horizontal:
+          //                                                                     50),
+          //                                                             child: Text(
+          //                                                               'Add to favorites',
+          //                                                               style: TextStyleUtil.openSans600(
+          //                                                                   fontSize:
+          //                                                                       16,
+          //                                                                   color:
+          //                                                                       ColorUtil.nblackText),
+          //                                                             ),
+          //                                                           ),
+          //                                                         ),
+          //                                                       ),
+          //                                                     )
+          //                                                   ])
+          //                                                 ],
+          //                                               ),
+          //                                             ))
+          //                                           ],
+          //                                         );
+          //                                       });
+          //                                 },
+          //                                 onListTap: () {
+          //                                   Get.back();
+          //                                   showModalBottomSheet(
+          //                                       backgroundColor:
+          //                                           ColorUtil.whitetrnsprnt,
+          //                                       context: context,
+          //                                       builder: (BuildContext context) {
+          //                                         return Column(
+          //                                           children: [
+          //                                             37.kheightBox,
+          //                                             Text(
+          //                                               'Save to List',
+          //                                               style: TextStyleUtil
+          //                                                   .openSans600(
+          //                                                       fontSize: 18,
+          //                                                       color: ColorUtil
+          //                                                           .nblackText),
+          //                                             ),
+          //                                             16.kheightBox,
+          //                                             InkWell(
+          //                                               onTap: () {
+          //                                                 Get.back();
+          //                                                 showModalBottomSheet(
+          //                                                     context: context,
+          //                                                     backgroundColor:
+          //                                                         ColorUtil
+          //                                                             .whitetrnsprnt,
+          //                                                     builder:
+          //                                                         (BuildContext
+          //                                                             context) {
+          //                                                       return Column(
+          //                                                         children: [
+          //                                                           24.kheightBox,
+          //                                                           Text(
+          //                                                             'New List',
+          //                                                             style: TextStyleUtil.openSans600(
+          //                                                                 fontSize:
+          //                                                                     18,
+          //                                                                 color: ColorUtil
+          //                                                                     .nblackText),
+          //                                                           ),
+          //                                                           53.kheightBox,
+          //                                                           Form(
+          //                                                               child:
+          //                                                                   Padding(
+          //                                                             padding: const EdgeInsets
+          //                                                                 .symmetric(
+          //                                                                 horizontal:
+          //                                                                     16.0,
+          //                                                                 vertical:
+          //                                                                     8),
+          //                                                             child:
+          //                                                                 Column(
+          //                                                               crossAxisAlignment:
+          //                                                                   CrossAxisAlignment
+          //                                                                       .start,
+          //                                                               children: [
+          //                                                                 Text(
+          //                                                                   'List Name',
+          //                                                                   style:
+          //                                                                       TextStyleUtil.openSans600(color: ColorUtil.nblackText),
+          //                                                                 ),
+          //                                                                 8.kheightBox,
+          //                                                                 TextFormField(
+          //                                                                   decoration:
+          //                                                                       InputDecoration(
+          //                                                                     hintText:
+          //                                                                         'Enter your list name here.',
+          //                                                                     fillColor:
+          //                                                                         ColorUtil.whitetText,
+          //                                                                     filled:
+          //                                                                         true,
+          //                                                                     focusedBorder:
+          //                                                                         const OutlineInputBorder(borderSide: BorderSide(color: ColorUtil.whitetrnsprnt), borderRadius: BorderRadius.all(Radius.circular(20))),
+          //                                                                     border: const OutlineInputBorder(
+          //                                                                         borderSide: BorderSide(
+          //                                                                           color: ColorUtil.whitetrnsprnt,
+          //                                                                         ),
+          //                                                                         borderRadius: BorderRadius.all(Radius.circular(20))),
+          //                                                                     enabledBorder: const OutlineInputBorder(
+          //                                                                         borderSide: BorderSide(
+          //                                                                           color: ColorUtil.whitetrnsprnt,
+          //                                                                         ),
+          //                                                                         borderRadius: BorderRadius.all(Radius.circular(20))),
+          //                                                                   ),
+          //                                                                 ),
+          //                                                                 24.kheightBox,
+          //                                                                 Row(
+          //                                                                     mainAxisAlignment:
+          //                                                                         MainAxisAlignment.spaceBetween,
+          //                                                                     children: [
+          //                                                                       ElevatedButton(
+          //                                                                         onPressed: () {
+          //                                                                           Get.back();
+          //                                                                         },
+          //                                                                         style: ElevatedButton.styleFrom(
+          //                                                                           // maximumSize:
+          //                                                                           // Size(163.kw,
+          //                                                                           //     56.kh),
+          //                                                                           side: BorderSide(color: ColorUtil.nButtonColor),
+          //                                                                           elevation: 0,
+          //                                                                           backgroundColor: ColorUtil.nButtonColorLight2,
+          //                                                                         ),
+          //                                                                         child: Padding(
+          //                                                                           padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16),
+          //                                                                           child: Text(
+          //                                                                             'Cancel',
+          //                                                                             style: TextStyleUtil.openSans600(fontSize: 16, color: ColorUtil.nblackText),
+          //                                                                           ),
+          //                                                                         ),
+          //                                                                       ),
+          //                                                                       ElevatedButton(
+          //                                                                         onPressed: () {
+          //                                                                           Get.back();
+          //                                                                         },
+          //                                                                         style: ElevatedButton.styleFrom(
+          //                                                                           elevation: 0,
+          //                                                                           backgroundColor: ColorUtil.nButtonColor,
+          //                                                                         ),
+          //                                                                         child: Padding(
+          //                                                                           padding: EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+          //                                                                           child: Text(
+          //                                                                             'Save',
+          //                                                                             style: TextStyleUtil.openSans600(fontSize: 16, color: ColorUtil.nblackText),
+          //                                                                           ),
+          //                                                                         ),
+          //                                                                       )
+          //                                                                     ])
+          //                                                               ],
+          //                                                             ),
+          //                                                           ))
+          //                                                         ],
+          //                                                       );
+          //                                                     });
+          //                                               },
+          //                                               child: Padding(
+          //                                                 padding:
+          //                                                     const EdgeInsets
+          //                                                         .symmetric(
+          //                                                         horizontal:
+          //                                                             16.0),
+          //                                                 child: Container(
+          //                                                   height: 64.kh,
+          //                                                   width: 100.w,
+          //                                                   decoration: BoxDecoration(
+          //                                                       color: ColorUtil
+          //                                                           .whitetText,
+          //                                                       borderRadius: BorderRadius
+          //                                                           .all(Radius
+          //                                                               .circular(
+          //                                                                   40))),
+          //                                                   child: Padding(
+          //                                                     padding:
+          //                                                         const EdgeInsets
+          //                                                             .symmetric(
+          //                                                             horizontal:
+          //                                                                 16.0,
+          //                                                             vertical:
+          //                                                                 20),
+          //                                                     child: Row(
+          //                                                       mainAxisAlignment:
+          //                                                           MainAxisAlignment
+          //                                                               .spaceBetween,
+          //                                                       children: [
+          //                                                         Text(
+          //                                                           'Add New List',
+          //                                                           style: TextStyleUtil.openSans400(
+          //                                                               fontSize:
+          //                                                                   16,
+          //                                                               color: ColorUtil
+          //                                                                   .nblackText),
+          //                                                         ),
+          //                                                         Image.asset(
+          //                                                             ImageConstant
+          //                                                                 .addButton)
+          //                                                       ],
+          //                                                     ),
+          //                                                   ),
+          //                                                 ),
+          //                                               ),
+          //                                             ),
+          //                                             16.kheightBox,
+          //                                             saveListCard(),
+          //                                             saveListCard(),
+          //                                             saveListCard(),
+          //                                           ],
+          //                                         );
+          //                                       });
+          //                                 },
+          //                               );
+          //                             });
+          //                       },
+          //                       child: reelIcon(
+          //                         imgpath: ImageConstant.save,
+          //                         label: '81',
+          //                       ),
+          //                     ),
+          //                     SizedBox(height: 16),
+          //                   ],
+          //                 ),
+          //               ),
 
-        //               isLive
-        //                   ? Stack(
-        //                       children: [
-        //                         SizedBox(
-        //                           height: 160.kh,
-        //                           width: 160.kw,
-        //                         ),
-        //                         Positioned(
-        //                           left: 30,
-        //                           bottom: 0,
-        //                           child: Container(
-        //                             height: 160.kh,
-        //                             width: 160.kw,
-        //                             decoration: BoxDecoration(
-        //                               shape: BoxShape.circle,
-        //                               border: Border.all(
-        //                                 color: ColorUtil.nButtonColor,
-        //                                 width: 5,
-        //                               ),
-        //                             ),
-        //                             child: ClipOval(
-        //                               child: Image.asset(
-        //                                 ImageConstant.live,
-        //                                 fit: BoxFit.fill,
-        //                               ),
-        //                             ),
-        //                           ),
-        //                         ),
-        //                         Positioned(
-        //                             left: 60,
-        //                             top: 40,
-        //                             child: Container(
-        //                               height: 26.kh,
-        //                               width: 45.kw,
-        //                               decoration: BoxDecoration(
-        //                                   color: ColorUtil.nblack07,
-        //                                   borderRadius: BorderRadius.all(
-        //                                       Radius.circular(100))),
-        //                               child: Center(
-        //                                 child: Text(
-        //                                   'Live!',
-        //                                   style: TextStyleUtil.openSans600(
-        //                                       fontSize: 12),
-        //                                 ),
-        //                               ),
-        //                             ))
-        //                       ],
-        //                     )
-        //                   : SizedBox.shrink()
-        //             ],
-        //           ),
-        //         ],
-        //       ),
-        //     ],
-        //   ),
-        // ),
-      ],
-    );
+          //               isLive
+          //                   ? Stack(
+          //                       children: [
+          //                         SizedBox(
+          //                           height: 160.kh,
+          //                           width: 160.kw,
+          //                         ),
+          //                         Positioned(
+          //                           left: 30,
+          //                           bottom: 0,
+          //                           child: Container(
+          //                             height: 160.kh,
+          //                             width: 160.kw,
+          //                             decoration: BoxDecoration(
+          //                               shape: BoxShape.circle,
+          //                               border: Border.all(
+          //                                 color: ColorUtil.nButtonColor,
+          //                                 width: 5,
+          //                               ),
+          //                             ),
+          //                             child: ClipOval(
+          //                               child: Image.asset(
+          //                                 ImageConstant.live,
+          //                                 fit: BoxFit.fill,
+          //                               ),
+          //                             ),
+          //                           ),
+          //                         ),
+          //                         Positioned(
+          //                             left: 60,
+          //                             top: 40,
+          //                             child: Container(
+          //                               height: 26.kh,
+          //                               width: 45.kw,
+          //                               decoration: BoxDecoration(
+          //                                   color: ColorUtil.nblack07,
+          //                                   borderRadius: BorderRadius.all(
+          //                                       Radius.circular(100))),
+          //                               child: Center(
+          //                                 child: Text(
+          //                                   'Live!',
+          //                                   style: TextStyleUtil.openSans600(
+          //                                       fontSize: 12),
+          //                                 ),
+          //                               ),
+          //                             ))
+          //                       ],
+          //                     )
+          //                   : SizedBox.shrink()
+          //             ],
+          //           ),
+          //         ],
+          //       ),
+          //     ],
+          //   ),
+          // ),
+        ],
+      ),
+      FloatingCart(),
+    ]);
   }
 }
 
