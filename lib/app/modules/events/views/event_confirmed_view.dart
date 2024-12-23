@@ -33,15 +33,20 @@ class EventConfirmedView extends GetView {
             ),
             centerTitle: true,
           ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Center(
-              child: ConfirmationCard(
-                title: 'Your payment was successfully submitted',
-                subtitle:
-                    'Hi Nichole, your spot is saved for the Rooftop BBQ Bash!',
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Center(
+                  child: ConfirmationCard(
+                    title: 'Your payment was successfully submitted',
+                    subtitle:
+                        'Hi Nichole, your spot is saved for the Rooftop BBQ Bash!',
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
           bottomNavigationBar: Container(
             height: 80,

@@ -6,6 +6,7 @@ import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:noch/app/components/noch_appbar.dart';
 import 'package:noch/app/constants/image_constant.dart';
 import 'package:noch/app/modules/delivery/views/delivery_cart_view.dart';
+import 'package:noch/app/modules/reservation/views/checkin_table_withoutserver_view.dart';
 import 'package:noch/app/routes/app_pages.dart';
 import 'package:noch/app/services/colors.dart';
 import 'package:noch/app/services/custom_button.dart';
@@ -597,9 +598,14 @@ class RestaurantMenuView extends GetView<RestaurantMenuController> {
                       expandedButton(
                         title: 'Confirm Order',
                         onPressed: () {
-                          controller.isFromDelivery
-                              ? Get.to(() => DeliveryCartView())
-                              : Get.toNamed(Routes.CART);
+                          if (controller.isFromDelivery) {
+                            Get.to(() => DeliveryCartView());
+                          } else if (controller.isFromTable) {
+                            Get.offAll(() => CheckinTableWithoutserverView(),
+                                arguments: {'isOrderSelect': true});
+                          } else {
+                            Get.toNamed(Routes.CART);
+                          }
                         },
                       )
                     ],

@@ -32,6 +32,8 @@ abstract class Routes {
   static const REPORT = _Paths.REPORT;
   static const CART = _Paths.CART;
   static const GATHERING = _Paths.GATHERING;
+  static const EVENTS_GATHERINGS = _Paths.EVENTS_GATHERINGS;
+  static const CHAT = _Paths.CHAT;
 }
 
 abstract class _Paths {
@@ -65,4 +67,6 @@ abstract class _Paths {
   static const REPORT = '/report';
   static const CART = '/cart';
   static const GATHERING = '/gathering';
+  static const EVENTS_GATHERINGS = '/events-gatherings';
+  static const CHAT = '/chat';
 }

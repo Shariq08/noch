@@ -199,7 +199,8 @@ class AboutRestaurantView extends GetView<AboutRestaurantController> {
                           onTap: () {
                             Get.toNamed(Routes.RESTAURANT_MENU, arguments: {
                               'isfromPickup': false,
-                              'isfromdelivery': false
+                              'isfromdelivery': false,
+                              'isfromTable': false
                             });
                           },
                           child: Card(

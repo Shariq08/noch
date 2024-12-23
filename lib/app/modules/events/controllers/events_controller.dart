@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:noch/app/modules/navigation/controllers/navigation_controller.dart';
+import 'package:noch/app/routes/app_pages.dart';
 
 class EventsController extends GetxController {
   var isInterested = false.obs;
@@ -9,7 +10,7 @@ class EventsController extends GetxController {
   void goToHome() {
     navigationController.changePage(0);
     navigationController.resetController();
-    Get.offNamed('/navigation');
+    Get.offNamed(Routes.NAVIGATION);
   }
 
   void toggleInterest() {

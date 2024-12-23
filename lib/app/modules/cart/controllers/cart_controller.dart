@@ -7,7 +7,7 @@ class CartController extends GetxController {
   var selectedDay = (-1).obs;
   var selectedTime = ''.obs;
   var isExpanded = false.obs;
-
+  var orderItems = [].obs;
   var selectedPaymentOption = ''.obs;
 
   void updateSelectedPayment(String option) {
@@ -16,6 +16,10 @@ class CartController extends GetxController {
     } else {
       selectedPaymentOption.value = option;
     }
+  }
+
+  void addOrderItems() {
+    orderItems.add('rest');
   }
 
   void updateTime(DateTime time) {

@@ -96,4 +96,11 @@ class ImageConstant {
   static String mastercard = 'assets/images/mastercard.png';
   static String visa = 'assets/images/visa.png';
   static String pizza = 'assets/images/pizza.png';
+  static String reservationCard = 'assets/images/reservation_card.jpeg';
+  static String tableIcon = 'assets/images/table_icon.png';
+  static String dollarIcon = 'assets/images/dollar_icon.png';
+  static String qrScan = 'assets/images/qr-scan.png';
+  static String server = 'assets/images/server.png';
+  static String menuIcon2 = 'assets/images/menuicon2.png';
+  static String userchat = 'assets/images/userchat.png';
 }

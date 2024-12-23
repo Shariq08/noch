@@ -2,22 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:noch/app/services/colors.dart';
 import 'package:noch/app/services/text_style_util.dart';
 
-InputDecoration textFormInputDecoration(String hinttext) {
+InputDecoration textFormInputDecoration(String hinttext,
+    {Color fillColor = ColorUtil.nTextForm, Color sideColor = Colors.black}) {
   return InputDecoration(
     hintText: hinttext,
-    fillColor: ColorUtil.nTextForm,
+    fillColor: fillColor,
     filled: true,
-    focusedBorder: const OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.black),
-        borderRadius: BorderRadius.all(Radius.circular(20))),
-    border: const OutlineInputBorder(
+    focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: sideColor),
+        borderRadius: const BorderRadius.all(Radius.circular(20))),
+    border: OutlineInputBorder(
         borderSide: BorderSide(
-          color: Colors.black,
+          color: sideColor,
         ),
         borderRadius: BorderRadius.all(Radius.circular(20))),
-    enabledBorder: const OutlineInputBorder(
+    enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
-          color: Colors.black,
+          color: sideColor,
         ),
         borderRadius: BorderRadius.all(Radius.circular(20))),
   );

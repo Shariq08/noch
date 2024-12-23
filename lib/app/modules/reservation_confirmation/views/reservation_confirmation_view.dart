@@ -35,15 +35,20 @@ class ReservationConfirmationView
             ),
             centerTitle: true,
           ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Center(
-              child: ConfirmationCard(
-                title: 'Your booking was \n successfully submitted',
-                subtitle:
-                    'Please go the reservations to view your booking status',
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Center(
+                  child: ConfirmationCard(
+                    title: 'Your booking was \n successfully submitted',
+                    subtitle:
+                        'Please go the reservations to view your booking status',
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
           bottomNavigationBar: Container(
             height: 80,

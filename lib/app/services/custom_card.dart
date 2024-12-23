@@ -223,14 +223,12 @@ class RestroCard extends StatelessWidget {
       required Function()? onTap}) {
     return InkWell(
       onTap: onTap,
-      child: Container(
-        height: 23.kh,
-        width: 48.kw,
-        decoration: BoxDecoration(
-            color: ColorUtil.nButtonColorLight2,
+      child: Card(
+        shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(16))),
+        color: ColorUtil.nButtonColorLight2,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
           child: Row(
             children: [
               Image.asset(
@@ -325,11 +323,9 @@ class ConfirmationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 303.kh,
-      width: 100.w,
-      decoration: BoxDecoration(
-          color: ColorUtil.whitetText,
+    return Card(
+      color: ColorUtil.whitetrnsprnt,
+      shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(24))),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),

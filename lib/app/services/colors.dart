@@ -33,8 +33,11 @@ extension ColorUtil on BuildContext {
   static const Color nButtonColor = Color.fromRGBO(255, 210, 0, 1);
   static Color nButtonColorLight = HexColor('#FFF4BF');
   static const Color nButtonColorLight2 = Color.fromRGBO(255, 241, 229, 1);
+  static Color nButtonColorLight3 = HexColor('#FFFBE5');
   static Color nblackText = HexColor('#111111');
-
+  static Color nblackText2 = HexColor("#CCC8B2");
+  static Color nblackText4 = HexColor("#828282");
+  static Color nblackText5 = HexColor("#A8A8A8");
   static const Color nbrightnessIconC1 = Color.fromRGBO(255, 217, 38, 1);
   static const Color nbrightnessIconC2 = Color.fromRGBO(255, 237, 153, 1);
   static const Color nTextForm = Color.fromRGBO(43, 41, 32, 1);
@@ -44,7 +47,8 @@ extension ColorUtil on BuildContext {
   static const Color nblack07 = Color.fromRGBO(0, 0, 0, 0.20);
   static const Color transparentTab = Color.fromRGBO(0, 0, 0, 0.4);
   static Color restrReviewProfile = HexColor("#3A2115");
-  static Color nblackText2 = HexColor("#CCC8B2");
+
   static Color blackgrey2 = HexColor("#373737");
   static Color paymentcardbackground = HexColor("#F6F6F6");
+  static Color cancelbackground = HexColor("#FDA725");
 }

@@ -4,6 +4,8 @@ import '../modules/about_restaurant/bindings/about_restaurant_binding.dart';
 import '../modules/about_restaurant/views/about_restaurant_view.dart';
 import '../modules/cart/bindings/cart_binding.dart';
 import '../modules/cart/views/cart_view.dart';
+import '../modules/chat/bindings/chat_binding.dart';
+import '../modules/chat/views/chat_view.dart';
 import '../modules/delivery/bindings/delivery_binding.dart';
 import '../modules/delivery/views/delivery_view.dart';
 import '../modules/dish_deatails/bindings/dish_deatails_binding.dart';
@@ -12,6 +14,8 @@ import '../modules/enable_location/bindings/enable_location_binding.dart';
 import '../modules/enable_location/views/enable_location_view.dart';
 import '../modules/events/bindings/events_binding.dart';
 import '../modules/events/views/events_view.dart';
+import '../modules/events_gatherings/bindings/events_gatherings_binding.dart';
+import '../modules/events_gatherings/views/events_gatherings_view.dart';
 import '../modules/gathering/bindings/gathering_binding.dart';
 import '../modules/gathering/views/gathering_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -33,7 +37,7 @@ import '../modules/reels/views/reels_view.dart';
 import '../modules/report/bindings/report_binding.dart';
 import '../modules/report/views/report_view.dart';
 import '../modules/reservation/bindings/reservation_binding.dart';
-import '../modules/reservation/views/reservation_view.dart';
+import '../modules/reservation/views/reservation_booking_view.dart';
 import '../modules/reservation_confirmation/bindings/reservation_confirmation_binding.dart';
 import '../modules/reservation_confirmation/views/reservation_confirmation_view.dart';
 import '../modules/restaurant/bindings/restaurant_binding.dart';
@@ -142,7 +146,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.RESERVATION,
-      page: () => const ReservationView(),
+      page: () => const ReservationBookingView(),
       binding: ReservationBinding(),
     ),
     GetPage(
@@ -204,6 +208,16 @@ class AppPages {
       name: _Paths.GATHERING,
       page: () => const GatheringView(),
       binding: GatheringBinding(),
+    ),
+    GetPage(
+      name: _Paths.EVENTS_GATHERINGS,
+      page: () => const EventsGatheringsView(),
+      binding: EventsGatheringsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHAT,
+      page: () => const ChatView(),
+      binding: ChatBinding(),
     ),
   ];
 }

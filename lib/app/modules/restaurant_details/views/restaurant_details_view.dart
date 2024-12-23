@@ -69,7 +69,7 @@ class RestaurantDetailsView extends GetView<RestaurantDetailsController> {
               top: 60,
               child: IconButton(
                   onPressed: () {
-                    Get.offNamed(Routes.RESTAURANT);
+                    controller.goToRestaurantList();
                   },
                   icon: Icon(
                     Icons.arrow_back,
@@ -98,14 +98,16 @@ class RestaurantDetailsView extends GetView<RestaurantDetailsController> {
                           nCalendarButton('Pick-up', () {
                             Get.toNamed(Routes.RESTAURANT_MENU, arguments: {
                               'isfromPickup': true,
-                              'isfromdelivery': false
+                              'isfromdelivery': false,
+                              'isfromTable': false
                             });
                           }),
                           8.kheightBox,
                           nCalendarButton('Delivery', () {
                             Get.toNamed(Routes.RESTAURANT_MENU, arguments: {
                               'isfromPickup': true,
-                              'isfromdelivery': true
+                              'isfromdelivery': true,
+                              'isfromTable': false
                             });
                           })
                         ],
@@ -129,7 +131,8 @@ class RestaurantDetailsView extends GetView<RestaurantDetailsController> {
                     child: Text(
                       'The Hatch Rotisserie & Bar',
                       style: TextStyleUtil.openSans700(fontSize: 24),
-                      overflow: TextOverflow.ellipsis,
+                      overflow: TextOverflow.visible,
+                      softWrap: true,
                       maxLines: 3,
                     ),
                   ),
@@ -268,7 +271,7 @@ class RestaurantDetailsView extends GetView<RestaurantDetailsController> {
                       15.kheightBox,
                       GestureDetector(
                           onTap: () {
-                            Get.toNamed('/restaurant-menu',
+                            Get.toNamed(Routes.RESTAURANT_MENU,
                                 arguments: {'isfromPickup': false});
                           },
                           child: Image.asset(ImageConstant.menu)),
